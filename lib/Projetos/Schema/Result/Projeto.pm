@@ -189,6 +189,11 @@ __PACKAGE__->has_many(
 # Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-20 19:36:31
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:AP/+VRDsUHFx+yg5E2uZIw
 
+sub display_name {
+    my $self = shift;
+    $self->nome || '';
+}
+
 
 # You can replace this text with custom content, and it will be preserved on regeneration
 1;

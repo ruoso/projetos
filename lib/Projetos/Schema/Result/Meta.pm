@@ -105,6 +105,10 @@ __PACKAGE__->belongs_to(
 # Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-20 19:36:31
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:F8BYRWoR2tviEDrDZrV6BQ
 
+sub display_name {
+    my $self = shift;
+    $self->descricao || '';
+}
 
 # You can replace this text with custom content, and it will be preserved on regeneration
 1;
