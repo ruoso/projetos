@@ -4,9 +4,12 @@
 <tr>
 <td class="view_label"><b>Alocacoes:</b></td>
 <td>
-    
-    [% FOR val = item.alocacoes; val; ', '; END %]
-    
+   <DL>
+    [% FOR val = item.alocacoes %]
+     <DT>[% val.pessoa.nome %]</DT>
+     <DD>[% val.papel.descricao %]</DD>
+    [% END %]
+   </DL>
 </td>
 </tr>
 
@@ -14,7 +17,7 @@
 <td class="view_label"><b>Coordenacao:</b></td>
 <td>
     
-    [%  item.coordenacao %]
+    [%  item.coordenacao.nome %]
     
 </td>
 </tr>
@@ -41,7 +44,7 @@
 <td class="view_label"><b>Gerente:</b></td>
 <td>
     
-    [%  item.gerente %]
+    [%  item.gerente.nome %]
     
 </td>
 </tr>

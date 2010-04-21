@@ -37,13 +37,18 @@
     
     <td>
     
-    [% FOR val = row.alocacoes; val; ', '; END %]
+   <DL>
+    [% FOR val = row.alocacoes %]
+     <DT>[% val.pessoa.nome %]</DT>
+     <DD>[% val.papel.descricao %]</DD>
+    [% END %]
+   </DL>
     
     </td>
     
     <td>
     
-    [%  row.coordenacao %]
+    [%  row.coordenacao.nome %]
     
     </td>
     
@@ -61,7 +66,7 @@
     
     <td>
     
-    [%  row.gerente %]
+    [%  row.gerente.nome %]
     
     </td>
     
