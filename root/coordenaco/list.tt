@@ -1,0 +1,54 @@
+
+<table>
+<tr>
+<th> projetos </th>
+
+
+<th> [% order_by_column_link('data_inicio', 'Data Inicio') %] </th>
+
+
+<th> [% order_by_column_link('data_fim', 'Data Fim') %] </th>
+
+
+<th> [% order_by_column_link('nome', 'Nome') %] </th>
+
+ 
+</tr>
+[% WHILE (row = result.next) %]
+    <tr>
+    
+    <td>
+    
+    [% FOR val = row.projetos; val; ', '; END %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.data_inicio %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.data_fim %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.nome %]
+    
+    </td>
+     
+    [% SET id = row.$pri %]
+    <td><a href="[% c.uri_for( 'view', row.coordenacao_id,  ) %]">View</a></td>
+    <td><a href="[% c.uri_for( 'edit', row.coordenacao_id,  ) %]">Edit</a></td>
+    <td><a href="[% c.uri_for( 'destroy', row.coordenacao_id,  ) %]">Delete</a></td>
+    </tr>
+[% END %]
+</table>
+[% PROCESS pager.tt %]
+<br/>
+<a href="[% c.uri_for( 'edit' ) %]">Add</a>
+

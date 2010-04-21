@@ -1,0 +1,17 @@
+---
+name: Projeto
+
+View::TT:
+    WRAPPER: 'wrapper.tt'
+
+InstantCRUD:
+    model_name: DBICSchemamodel
+    schema_name: DBSchema
+    maxrows: 10
+
+Model::DBICSchemamodel:
+    connect_info:
+        dsn: "dbi:Pg:dbname=db_projetos;host=127.0.0.1"
+        user: fila
+        password: senha
+

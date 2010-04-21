@@ -1,0 +1,46 @@
+
+<table name="view">
+
+<tr>
+<td class="view_label"><b>Alocacoes:</b></td>
+<td>
+    
+    [% FOR val = item.alocacoes; val; ', '; END %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Data Inicio:</b></td>
+<td>
+    
+    [%  item.data_inicio %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Data Fim:</b></td>
+<td>
+    
+    [%  item.data_fim %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Descricao:</b></td>
+<td>
+    
+    [%  item.descricao %]
+    
+</td>
+</tr>
+
+</table>
+<hr />
+<a href="[% c.uri_for( 'edit', item.papel_id,  ) %]">Edit</a>
+<hr />
+<a href="[% c.uri_for( 'list' ) %]">List</a>
+
+

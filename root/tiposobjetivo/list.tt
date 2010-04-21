@@ -1,0 +1,36 @@
+
+<table>
+<tr>
+<th> objetivos </th>
+
+
+<th> [% order_by_column_link('nome', 'Nome') %] </th>
+
+ 
+</tr>
+[% WHILE (row = result.next) %]
+    <tr>
+    
+    <td>
+    
+    [% FOR val = row.objetivos; val; ', '; END %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.nome %]
+    
+    </td>
+     
+    [% SET id = row.$pri %]
+    <td><a href="[% c.uri_for( 'view', row.tipo_objetivo_id,  ) %]">View</a></td>
+    <td><a href="[% c.uri_for( 'edit', row.tipo_objetivo_id,  ) %]">Edit</a></td>
+    <td><a href="[% c.uri_for( 'destroy', row.tipo_objetivo_id,  ) %]">Delete</a></td>
+    </tr>
+[% END %]
+</table>
+[% PROCESS pager.tt %]
+<br/>
+<a href="[% c.uri_for( 'edit' ) %]">Add</a>
+

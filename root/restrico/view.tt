@@ -1,0 +1,37 @@
+
+<table name="view">
+
+<tr>
+<td class="view_label"><b>Tipo Restricao:</b></td>
+<td>
+    
+    [%  item.tipo_restricao %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Projeto:</b></td>
+<td>
+    
+    [%  item.projeto %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Importancia:</b></td>
+<td>
+    
+    [%  item.importancia %]
+    
+</td>
+</tr>
+
+</table>
+<hr />
+<a href="[% c.uri_for( 'edit', item.importancia, item.projeto_id, item.tipo_restricao_id,  ) %]">Edit</a>
+<hr />
+<a href="[% c.uri_for( 'list' ) %]">List</a>
+
+

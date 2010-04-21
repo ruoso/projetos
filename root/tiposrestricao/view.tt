@@ -1,0 +1,28 @@
+
+<table name="view">
+
+<tr>
+<td class="view_label"><b>Restricoes:</b></td>
+<td>
+    
+    [% FOR val = item.restricoes; val; ', '; END %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Nome:</b></td>
+<td>
+    
+    [%  item.nome %]
+    
+</td>
+</tr>
+
+</table>
+<hr />
+<a href="[% c.uri_for( 'edit', item.tipo_restricao_id,  ) %]">Edit</a>
+<hr />
+<a href="[% c.uri_for( 'list' ) %]">List</a>
+
+

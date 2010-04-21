@@ -1,0 +1,46 @@
+
+<table>
+<tr>
+
+<th> [% order_by_column_link('tipo_restricao', 'Tipo Restricao') %] </th>
+
+
+<th> [% order_by_column_link('projeto', 'Projeto') %] </th>
+
+
+<th> [% order_by_column_link('importancia', 'Importancia') %] </th>
+
+ 
+</tr>
+[% WHILE (row = result.next) %]
+    <tr>
+    
+    <td>
+    
+    [%  row.tipo_restricao %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.projeto %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.importancia %]
+    
+    </td>
+     
+    [% SET id = row.$pri %]
+    <td><a href="[% c.uri_for( 'view', row.importancia, row.projeto_id, row.tipo_restricao_id,  ) %]">View</a></td>
+    <td><a href="[% c.uri_for( 'edit', row.importancia, row.projeto_id, row.tipo_restricao_id,  ) %]">Edit</a></td>
+    <td><a href="[% c.uri_for( 'destroy', row.importancia, row.projeto_id, row.tipo_restricao_id,  ) %]">Delete</a></td>
+    </tr>
+[% END %]
+</table>
+[% PROCESS pager.tt %]
+<br/>
+<a href="[% c.uri_for( 'edit' ) %]">Add</a>
+

@@ -1,0 +1,109 @@
+
+<table name="view">
+
+<tr>
+<td class="view_label"><b>Alocacoes:</b></td>
+<td>
+    
+    [% FOR val = item.alocacoes; val; ', '; END %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Coordenacao:</b></td>
+<td>
+    
+    [%  item.coordenacao %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Riscos:</b></td>
+<td>
+    
+    [% FOR val = item.riscos; val; ', '; END %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Restricoes:</b></td>
+<td>
+    
+    [% FOR val = item.restricoes; val; ', '; END %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Gerente:</b></td>
+<td>
+    
+    [%  item.gerente %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Objetivos:</b></td>
+<td>
+    
+    [% FOR val = item.objetivos; val; ', '; END %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Data Inicio:</b></td>
+<td>
+    
+    [%  item.data_inicio %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Data Fim:</b></td>
+<td>
+    
+    [%  item.data_fim %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Nome:</b></td>
+<td>
+    
+    [%  item.nome %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Valor:</b></td>
+<td>
+    
+    [%  item.valor %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Status:</b></td>
+<td>
+    
+    [%  item.status %]
+    
+</td>
+</tr>
+
+</table>
+<hr />
+<a href="[% c.uri_for( 'edit', item.projeto_id,  ) %]">Edit</a>
+<hr />
+<a href="[% c.uri_for( 'list' ) %]">List</a>
+
+

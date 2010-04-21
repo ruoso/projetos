@@ -1,0 +1,37 @@
+package Projeto::Controller::Pessoa;
+use strict;
+use warnings;
+use base "Catalyst::Example::Controller::InstantCRUD";
+
+
+{
+    package Projeto::Controller::Pessoa::PessoaForm;
+    use HTML::FormHandler::Moose;
+    extends 'HTML::FormHandler::Model::DBIC';
+    with 'HTML::FormHandler::Render::Simple';
+
+    use DateTime;
+
+    has '+item_class' => ( default => 'Pessoa' );
+
+    has_field 'tipo_contratacao' => ( type => 'Text', );
+    has_field 'custo' => ( type => 'TextArea', );
+    has_field 'salario' => ( type => 'TextArea', );
+    has_field 'nome' => ( type => 'TextArea', required => 1, );
+    has_field 'data_fim' => ( type => 'Date' );
+    has_field 'data_inicio' => ( type => 'Date');
+    has_field 'cargo' => ( type => 'Select', );
+    has_field 'submit' => ( widget => 'submit' );
+
+    sub options_cargo {
+        my $self = shift;
+        return [ map { $_->cargo_id => $_->descricao }
+                 $self->schema->resultset('Cargo')->all ];
+    }
+}
+
+
+
+
+1;
+

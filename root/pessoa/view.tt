@@ -1,0 +1,91 @@
+
+<table name="view">
+
+<tr>
+<td class="view_label"><b>Cargo:</b></td>
+<td>
+    
+    [%  item.cargo %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Alocacoes:</b></td>
+<td>
+    
+    [% FOR val = item.alocacoes; val; ', '; END %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Projetos:</b></td>
+<td>
+    
+    [% FOR val = item.projetos; val; ', '; END %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Data Inicio:</b></td>
+<td>
+    
+    [%  item.data_inicio %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Data Fim:</b></td>
+<td>
+    
+    [%  item.data_fim %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Nome:</b></td>
+<td>
+    
+    [%  item.nome %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Salario:</b></td>
+<td>
+    
+    [%  item.salario %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Custo:</b></td>
+<td>
+    
+    [%  item.custo %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Tipo Contratacao:</b></td>
+<td>
+    
+    [%  item.tipo_contratacao %]
+    
+</td>
+</tr>
+
+</table>
+<hr />
+<a href="[% c.uri_for( 'edit', item.pessoa_id,  ) %]">Edit</a>
+<hr />
+<a href="[% c.uri_for( 'list' ) %]">List</a>
+
+

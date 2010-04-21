@@ -1,0 +1,64 @@
+
+<table>
+<tr>
+
+<th> [% order_by_column_link('projeto', 'Projeto') %] </th>
+
+
+<th> [% order_by_column_link('papel', 'Papel') %] </th>
+
+
+<th> [% order_by_column_link('pessoa', 'Pessoa') %] </th>
+
+
+<th> [% order_by_column_link('data_inicio', 'Data Inicio') %] </th>
+
+
+<th> [% order_by_column_link('data_fim', 'Data Fim') %] </th>
+
+ 
+</tr>
+[% WHILE (row = result.next) %]
+    <tr>
+    
+    <td>
+    
+    [%  row.projeto %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.papel %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.pessoa %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.data_inicio %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.data_fim %]
+    
+    </td>
+     
+    [% SET id = row.$pri %]
+    <td><a href="[% c.uri_for( 'view', row.projeto_id, row.pessoa_id, row.data_inicio, row.data_fim,  ) %]">View</a></td>
+    <td><a href="[% c.uri_for( 'edit', row.projeto_id, row.pessoa_id, row.data_inicio, row.data_fim,  ) %]">Edit</a></td>
+    <td><a href="[% c.uri_for( 'destroy', row.projeto_id, row.pessoa_id, row.data_inicio, row.data_fim,  ) %]">Delete</a></td>
+    </tr>
+[% END %]
+</table>
+[% PROCESS pager.tt %]
+<br/>
+<a href="[% c.uri_for( 'edit' ) %]">Add</a>
+

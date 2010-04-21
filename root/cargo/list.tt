@@ -1,0 +1,54 @@
+
+<table>
+<tr>
+<th> pessoas </th>
+
+
+<th> [% order_by_column_link('data_inicio', 'Data Inicio') %] </th>
+
+
+<th> [% order_by_column_link('data_fim', 'Data Fim') %] </th>
+
+
+<th> [% order_by_column_link('descricao', 'Descricao') %] </th>
+
+ 
+</tr>
+[% WHILE (row = result.next) %]
+    <tr>
+    
+    <td>
+    
+    [% FOR val = row.pessoas; val; ', '; END %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.data_inicio %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.data_fim %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.descricao %]
+    
+    </td>
+     
+    [% SET id = row.$pri %]
+    <td><a href="[% c.uri_for( 'view', row.cargo_id,  ) %]">View</a></td>
+    <td><a href="[% c.uri_for( 'edit', row.cargo_id,  ) %]">Edit</a></td>
+    <td><a href="[% c.uri_for( 'destroy', row.cargo_id,  ) %]">Delete</a></td>
+    </tr>
+[% END %]
+</table>
+[% PROCESS pager.tt %]
+<br/>
+<a href="[% c.uri_for( 'edit' ) %]">Add</a>
+

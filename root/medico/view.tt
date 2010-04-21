@@ -1,0 +1,55 @@
+
+<table name="view">
+
+<tr>
+<td class="view_label"><b>Meta:</b></td>
+<td>
+    
+    [%  item.meta %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Medicao Id:</b></td>
+<td>
+    
+    [%  item.medicao_id %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Data Inicio:</b></td>
+<td>
+    
+    [%  item.data_inicio %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Data Fim:</b></td>
+<td>
+    
+    [%  item.data_fim %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Descricao:</b></td>
+<td>
+    
+    [%  item.descricao %]
+    
+</td>
+</tr>
+
+</table>
+<hr />
+<a href="[% c.uri_for( 'edit', item.medicao_id,  ) %]">Edit</a>
+<hr />
+<a href="[% c.uri_for( 'list' ) %]">List</a>
+
+
