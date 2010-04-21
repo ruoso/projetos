@@ -7,7 +7,7 @@
    <DL>
     [% FOR val = item.alocacoes %]
      <DT>[% val.pessoa.nome %]</DT>
-     <DD>[% val.papel.descricao %]</DD>
+     <DD>[% val.papel.descricao %] ([% val.data_inicio.dmy %] a [% val.data_fim.dmy %])</DD>
     [% END %]
    </DL>
 </td>

@@ -1,96 +1,52 @@
 
 <table>
 <tr>
-<th> alocacoes </th>
-
-
 <th> [% order_by_column_link('coordenacao', 'Coordenacao') %] </th>
-
-<th> riscos </th>
-
-<th> restricoes </th>
-
-
-<th> [% order_by_column_link('gerente', 'Gerente') %] </th>
-
-<th> objetivos </th>
-
-
-<th> [% order_by_column_link('data_inicio', 'Data Inicio') %] </th>
-
-
-<th> [% order_by_column_link('data_fim', 'Data Fim') %] </th>
-
 
 <th> [% order_by_column_link('nome', 'Nome') %] </th>
 
+<th> [% order_by_column_link('gerente', 'Gerente') %] </th>
+
+<th> [% order_by_column_link('data_inicio', 'Data Inicio') %] </th>
+
+<th> [% order_by_column_link('data_fim', 'Data Fim') %] </th>
 
 <th> [% order_by_column_link('valor', 'Valor') %] </th>
 
-
 <th> [% order_by_column_link('status', 'Status') %] </th>
 
- 
+
 </tr>
 [% WHILE (row = result.next) %]
     <tr>
     
     <td>
     
-   <DL>
-    [% FOR val = row.alocacoes %]
-     <DT>[% val.pessoa.nome %]</DT>
-     <DD>[% val.papel.descricao %]</DD>
-    [% END %]
-   </DL>
-    
-    </td>
-    
-    <td>
-    
     [%  row.coordenacao.nome %]
     
     </td>
-    
+
     <td>
     
-    [% FOR val = row.riscos; val; ', '; END %]
+    [%  row.nome %]
     
     </td>
     
-    <td>
-    
-    [% FOR val = row.restricoes; val; ', '; END %]
-    
-    </td>
     
     <td>
     
     [%  row.gerente.nome %]
     
     </td>
-    
     <td>
-    
-    [% FOR val = row.objetivos; val; ', '; END %]
+   
+    [%  row.data_inicio.dmy %]
     
     </td>
     
     <td>
     
-    [%  row.data_inicio %]
-    
-    </td>
-    
-    <td>
-    
-    [%  row.data_fim %]
-    
-    </td>
-    
-    <td>
-    
-    [%  row.nome %]
+    [%  row.data_fim.dmy %]
     
     </td>
     
