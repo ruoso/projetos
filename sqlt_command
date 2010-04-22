@@ -1,0 +1,1 @@
+sqlt -f PostgreSQL -t GraphViz mapa_situacional.sql > mapa_situacional.png 

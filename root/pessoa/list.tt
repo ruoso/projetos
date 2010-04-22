@@ -2,20 +2,18 @@
 <table>
 <tr>
 
+<th> [% order_by_column_link('nome', 'Nome') %] </th>
+
 <th> [% order_by_column_link('cargo', 'Cargo') %] </th>
 
 <th> alocacoes </th>
 
-<th> projetos </th>
-
+<th> projetos que gerencia </th>
 
 <th> [% order_by_column_link('data_inicio', 'Data Inicio') %] </th>
 
 
 <th> [% order_by_column_link('data_fim', 'Data Fim') %] </th>
-
-
-<th> [% order_by_column_link('nome', 'Nome') %] </th>
 
 
 <th> [% order_by_column_link('salario', 'Salario') %] </th>
@@ -30,40 +28,41 @@
 </tr>
 [% WHILE (row = result.next) %]
     <tr>
-    
-    <td>
-    
-    [%  row.cargo %]
-    
-    </td>
-    
-    <td>
-    
-    [% FOR val = row.alocacoes; val; ', '; END %]
-    
-    </td>
-    
-    <td>
-    
-    [% FOR val = row.projetos; val; ', '; END %]
-    
-    </td>
-    
-    <td>
-    
-    [%  row.data_inicio %]
-    
-    </td>
-    
-    <td>
-    
-    [%  row.data_fim %]
-    
-    </td>
-    
+
     <td>
     
     [%  row.nome %]
+    
+    </td>
+    
+
+    <td>
+    
+    [%  row.cargo.descricao %]
+    
+    </td>
+    
+    <td>
+    
+    [% FOR val = row.alocacoes; val.projeto.nome; ', '; END %]
+    
+    </td>
+    
+    <td>
+    
+    [% FOR val = row.projetos; val.nome; ', '; END %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.data_inicio.dmy %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.data_fim.dmy %]
     
     </td>
     

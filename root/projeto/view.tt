@@ -2,43 +2,19 @@
 <table name="view">
 
 <tr>
-<td class="view_label"><b>Alocacoes:</b></td>
+<td class="view_label"><b>Nome:</b></td>
 <td>
-   <DL>
-    [% FOR val = item.alocacoes %]
-     <DT>[% val.pessoa.nome %]</DT>
-     <DD>[% val.papel.descricao %] ([% val.data_inicio.dmy %] a [% val.data_fim.dmy %])</DD>
-    [% END %]
-   </DL>
+    
+    [%  item.nome %]
+    
 </td>
 </tr>
 
 <tr>
-<td class="view_label"><b>Coordenacao:</b></td>
+<td class="view_label"><b>Coordenação:</b></td>
 <td>
     
     [%  item.coordenacao.nome %]
-    
-</td>
-</tr>
-
-<tr>
-<td class="view_label"><b>Riscos:</b></td>
-<td>
-    [% FOR val = item.riscos; val; ', '; END %]
-    
-</td>
-</tr>
-
-<tr>
-<td class="view_label"><b>Restricoes:</b></td>
-<td>
-
-   <UL>
-    [% FOR val = item.restricoes_rs({},{ order_by => 'me.importancia' }).all %]
-     <LI>[% val.tipo_restricao.nome %]</LI>
-    [% END %]
-   </UL>
     
 </td>
 </tr>
@@ -53,19 +29,107 @@
 </tr>
 
 <tr>
-<td class="view_label"><b>Objetivos:</b></td>
+<td class="view_label"><b>Objetivos, metas e medições:</b></td>
 <td>
+   <UL>
+    [% FOREACH val IN
+       item.objetivos({},
+                      { prefetch => { metas => 'medicoes' },
+                        order_by => [ 'me.objetivo_id', 'metas.data_fim', 'medicoes.data_medicao' ] }) %]
+     <LI>[% val.descricao %]</LI>
+     <UL>
+     [% FOREACH meta IN val.metas %]
+       <LI>[% meta.descricao %] ([% meta.data_inicio.dmy %] a [% meta.data_fim.dmy %])</LI>
+       <UL>
+       [% FOREACH medicao IN meta.medicoes %]
+         <LI>
+             [% IF medicao.data_medicao %]
+              [% medicao.data_medicao.dmy %][% IF medicao.percentual ; ' (' _ medicao.percentual _ '%)' ; END %]:
+             [% END %]
+             [% medicao.descricao %]<BR>
+             
+             
+
+             [% IF medicao.aceite_registrado %]
+             Aceite registrado em [% medicao.aceite_registrado.dmy %].
+             [% END %]
+
+         </LI>
+       [% END %]
+       </UL>
+     [% END %]
+     </UL>
+    [% END %]
+   </UL>
     
-    [% FOR val = item.objetivos; val; ', '; END %]
-    
+      (<A HREF="[% c.uri_for_action('/objetivo/edit') %]">Adicionar Objetivo</A> |
+        <A HREF="[% c.uri_for_action('/meta/edit') %]">Adicionar Meta</A> |
+          <A HREF="[% c.uri_for_action('/medico/edit') %]">Adicionar Medição</A>)
 </td>
 </tr>
+
+<tr>
+<td class="view_label"><b>Status:</b></td>
+<td>
+    
+   <UL>
+    [% FOR val = item.statuses %]
+     <LI>[% val.data.dmy %]: [% val.descricao %]</LI>
+    [% END %]
+   </UL>
+    
+     (<A HREF="[% c.uri_for_action('/status/edit') %]">Adicionar Status</A>)
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Alocacoes:</b></td>
+<td>
+   <DL>
+    [% FOR val = item.alocacoes %]
+     <DT>[% val.pessoa.nome %]</DT>
+     <DD>[% val.papel.descricao %] ([% val.data_inicio.dmy %] a [% val.data_fim.dmy %])</DD>
+    [% END %]
+   </DL>
+
+      (<A HREF="[% c.uri_for_action('/alocaco/edit') %]">Adicionar Alocação</A>)
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Riscos:</b></td>
+<td>
+   <UL>
+    [% FOR val = item.riscos %]
+     <LI>[% val.descricao %]</LI>
+    [% END %]
+   </UL>
+
+      (<A HREF="[% c.uri_for_action('/risco/edit') %]">Adicionar Risco</A>)
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Restricoes:</b></td>
+<td>
+
+   <UL>
+    [% FOR val = item.restricoes_rs({},{ order_by => 'me.importancia' }).all %]
+     <LI>[% val.tipo_restricao.nome %]</LI>
+    [% END %]
+   </UL>
+    
+    (<A HREF="[% c.uri_for_action('/restrico/edit') %]">Adicionar Restrição</A>)
+</td>
+</tr>
+
+
 
 <tr>
 <td class="view_label"><b>Data Inicio:</b></td>
 <td>
     
-    [%  item.data_inicio %]
+    [%  item.data_inicio.dmy %]
     
 </td>
 </tr>
@@ -74,16 +138,7 @@
 <td class="view_label"><b>Data Fim:</b></td>
 <td>
     
-    [%  item.data_fim %]
-    
-</td>
-</tr>
-
-<tr>
-<td class="view_label"><b>Nome:</b></td>
-<td>
-    
-    [%  item.nome %]
+    [%  item.data_fim.dmy %]
     
 </td>
 </tr>
@@ -93,15 +148,6 @@
 <td>
     
     [%  item.valor %]
-    
-</td>
-</tr>
-
-<tr>
-<td class="view_label"><b>Status:</b></td>
-<td>
-    
-    [%  item.status %]
     
 </td>
 </tr>

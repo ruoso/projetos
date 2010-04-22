@@ -8,7 +8,7 @@ use warnings;
 
 use base 'DBIx::Class::Core';
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "UTF8Columns");
+__PACKAGE__->load_components("InflateColumn::DateTime");
 
 =head1 NAME
 
@@ -27,12 +27,7 @@ __PACKAGE__->table("medicoes");
   is_nullable: 0
   sequence: 'medicoes_medicao_id_seq'
 
-=head2 data_inicio
-
-  data_type: 'date'
-  is_nullable: 1
-
-=head2 data_fim
+=head2 data_medicao
 
   data_type: 'date'
   is_nullable: 1
@@ -49,6 +44,17 @@ __PACKAGE__->table("medicoes");
   is_nullable: 0
   size: 200
 
+=head2 percentual
+
+  data_type: 'numeric'
+  is_nullable: 1
+  size: [10,2]
+
+=head2 aceite_registrado
+
+  data_type: 'date'
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -59,14 +65,16 @@ __PACKAGE__->add_columns(
     is_nullable       => 0,
     sequence          => "medicoes_medicao_id_seq",
   },
-  "data_inicio",
-  { data_type => "date", is_nullable => 1 },
-  "data_fim",
+  "data_medicao",
   { data_type => "date", is_nullable => 1 },
   "meta_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "descricao",
   { data_type => "character varying", is_nullable => 0, size => 200 },
+  "percentual",
+  { data_type => "numeric", is_nullable => 1, size => [10, 2] },
+  "aceite_registrado",
+  { data_type => "date", is_nullable => 1 },
 );
 __PACKAGE__->set_primary_key("medicao_id");
 
@@ -88,12 +96,10 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-20 21:35:13
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:neUxpf3oOcFUZLjAbDLnug
+# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-22 18:45:06
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:aBuvHX8jb7UZgh+9+BDQlA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
-use overload '""' => sub {$_[0]->id}, fallback => 1;
-__PACKAGE__->utf8_columns(qw/medicao_id data_inicio data_fim meta_id descricao/);
 
 1;

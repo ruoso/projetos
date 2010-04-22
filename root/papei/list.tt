@@ -1,16 +1,14 @@
 
 <table>
 <tr>
-<th> alocacoes </th>
 
+<th> [% order_by_column_link('descricao', 'Descricao') %] </th>
 
 <th> [% order_by_column_link('data_inicio', 'Data Inicio') %] </th>
 
 
 <th> [% order_by_column_link('data_fim', 'Data Fim') %] </th>
 
-
-<th> [% order_by_column_link('descricao', 'Descricao') %] </th>
 
  
 </tr>
@@ -19,7 +17,7 @@
     
     <td>
     
-    [% FOR val = row.alocacoes; val; ', '; END %]
+    [%  row.descricao %]
     
     </td>
     
@@ -35,11 +33,6 @@
     
     </td>
     
-    <td>
-    
-    [%  row.descricao %]
-    
-    </td>
      
     [% SET id = row.$pri %]
     <td><a href="[% c.uri_for( 'view', row.papel_id,  ) %]">View</a></td>

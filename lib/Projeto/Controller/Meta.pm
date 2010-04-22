@@ -17,10 +17,10 @@ use base "Catalyst::Example::Controller::InstantCRUD";
 
     has '+item_class' => ( default => 'Meta' );
 
-    has_field 'descricao' => ( type => 'TextArea', required => 1, );
-    has_field 'data_fim' => ( type => 'Date' );
-    has_field 'data_inicio' => ( type => 'Date' );
     has_field 'objetivo' => ( type => 'Select', );
+    has_field 'descricao' => ( type => 'TextArea', required => 1, );
+    has_field 'data_inicio' => ( type => 'Date' );
+    has_field 'data_fim' => ( type => 'Date' );
     has_field 'submit' => ( widget => 'submit' );
 
     sub options_objetivo {

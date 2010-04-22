@@ -17,11 +17,11 @@ use base "Catalyst::Example::Controller::InstantCRUD";
 
     has '+item_class' => ( default => 'Alocaco' );
 
-    has_field 'data_fim' => ( 'Date' );
-    has_field 'data_inicio' => ( 'Date' );
     has_field 'projeto' => ( type => 'Select', );
     has_field 'papel' => ( type => 'Select', );
     has_field 'pessoa' => ( type => 'Select', );
+    has_field 'data_inicio' => ( 'Date' );
+    has_field 'data_fim' => ( 'Date' );
     has_field 'submit' => ( widget => 'submit' );
 
     sub options_projeto {

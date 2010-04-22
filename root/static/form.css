@@ -17,16 +17,20 @@ fieldset input,
 fieldset password,
 fieldset radio,
 fieldset select,
-fieldset textarea
 {
 	margin: 8px 0 8px 0;
 }
 
+fieldset textarea
+{
+	margin: 8px 0 8px 0;
+        width: 80em;
+}
+
 label {  
-	float: left;  
-	width: 120px;  
+        display: block;
 	margin: 8px 10px 8px 0;	
-	text-align: right;
+	text-align: left;
 }
 
 .main_fieldset fieldset label{
@@ -58,7 +62,6 @@ fieldset .error select {
 
 fieldset .radiogroup span label {
 	/* undo the above style */
-	float: none;
 	width: auto;
 	text-align: left;
 	padding-right: 0;

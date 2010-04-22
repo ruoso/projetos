@@ -1,8 +1,6 @@
 
 <table>
 <tr>
-<th> restricoes </th>
-
 
 <th> [% order_by_column_link('nome', 'Nome') %] </th>
 
@@ -10,12 +8,6 @@
 </tr>
 [% WHILE (row = result.next) %]
     <tr>
-    
-    <td>
-    
-    [% FOR val = row.restricoes; val; ', '; END %]
-    
-    </td>
     
     <td>
     

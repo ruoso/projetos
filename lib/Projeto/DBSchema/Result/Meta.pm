@@ -8,7 +8,7 @@ use warnings;
 
 use base 'DBIx::Class::Core';
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "UTF8Columns");
+__PACKAGE__->load_components("InflateColumn::DateTime");
 
 =head1 NAME
 
@@ -103,12 +103,10 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-20 21:35:13
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:4GLpxBQo0cQi/DVFgKx0GA
+# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-22 18:29:15
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:BXgTSdPRFAk5dfq0HsoNuw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
-use overload '""' => sub {$_[0]->id}, fallback => 1;
-__PACKAGE__->utf8_columns(qw/meta_id data_inicio data_fim objetivo_id descricao/);
 
 1;

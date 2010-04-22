@@ -1,16 +1,13 @@
 
 <table>
 <tr>
-<th> projetos </th>
 
+<th> [% order_by_column_link('nome', 'Nome') %] </th>
 
 <th> [% order_by_column_link('data_inicio', 'Data Inicio') %] </th>
 
 
 <th> [% order_by_column_link('data_fim', 'Data Fim') %] </th>
-
-
-<th> [% order_by_column_link('nome', 'Nome') %] </th>
 
  
 </tr>
@@ -19,10 +16,10 @@
     
     <td>
     
-    [% FOR val = row.projetos; val; ', '; END %]
+    [%  row.nome %]
     
     </td>
-    
+     
     <td>
     
     [%  row.data_inicio %]
@@ -35,12 +32,6 @@
     
     </td>
     
-    <td>
-    
-    [%  row.nome %]
-    
-    </td>
-     
     [% SET id = row.$pri %]
     <td><a href="[% c.uri_for( 'view', row.coordenacao_id,  ) %]">View</a></td>
     <td><a href="[% c.uri_for( 'edit', row.coordenacao_id,  ) %]">Edit</a></td>

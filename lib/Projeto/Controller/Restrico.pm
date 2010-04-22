@@ -15,9 +15,9 @@ use base "Catalyst::Example::Controller::InstantCRUD";
 
     has '+item_class' => ( default => 'Restrico' );
 
-    has_field 'importancia' => ( type => 'Integer', required => 1, );
-    has_field 'tipo_restricao' => ( type => 'Select', );
     has_field 'projeto' => ( type => 'Select', );
+    has_field 'tipo_restricao' => ( type => 'Select', );
+    has_field 'importancia' => ( type => 'Integer', required => 1, );
     has_field 'submit' => ( widget => 'submit' );
 
     sub options_projeto {

@@ -17,13 +17,13 @@ use base "Catalyst::Example::Controller::InstantCRUD";
 
     has '+item_class' => ( default => 'Projeto' );
 
-    has_field 'status' => ( type => 'TextArea', );
-    has_field 'valor' => ( type => 'TextArea', );
-    has_field 'nome' => ( type => 'TextArea', required => 1, );
-    has_field 'data_fim' => ( type => 'Date' );
-    has_field 'data_inicio' => ( type => 'Date' );
     has_field 'coordenacao' => ( type => 'Select', );
     has_field 'gerente' => ( type => 'Select', );
+    has_field 'nome' => ( type => 'Text', required => 1, );
+    has_field 'status' => ( type => 'TextArea', );
+    has_field 'valor' => ( type => 'TextArea', );
+    has_field 'data_inicio' => ( type => 'Date' );
+    has_field 'data_fim' => ( type => 'Date' );
     has_field 'submit' => ( widget => 'submit' );
 
     sub options_coordenacao {

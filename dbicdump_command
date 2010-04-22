@@ -1,0 +1,1 @@
+/srv/perl/bin/dbicdump -o dump_directory=lib/ -o components=InflateColumn::DateTime Projeto::DBSchema "dbi:Pg:dbname=db_projetos;host=127.0.0.1" fila senha

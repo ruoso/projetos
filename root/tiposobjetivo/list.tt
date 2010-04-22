@@ -1,8 +1,6 @@
 
 <table>
 <tr>
-<th> objetivos </th>
-
 
 <th> [% order_by_column_link('nome', 'Nome') %] </th>
 
@@ -10,12 +8,6 @@
 </tr>
 [% WHILE (row = result.next) %]
     <tr>
-    
-    <td>
-    
-    [% FOR val = row.objetivos; val; ', '; END %]
-    
-    </td>
     
     <td>
     
