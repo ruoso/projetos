@@ -25,7 +25,6 @@
 <tr>
 <td class="view_label"><b>Riscos:</b></td>
 <td>
-    
     [% FOR val = item.riscos; val; ', '; END %]
     
 </td>
@@ -34,8 +33,12 @@
 <tr>
 <td class="view_label"><b>Restricoes:</b></td>
 <td>
-    
-    [% FOR val = item.restricoes; val; ', '; END %]
+
+   <UL>
+    [% FOR val = item.restricoes_rs({},{ order_by => 'me.importancia' }).all %]
+     <LI>[% val.tipo_restricao.nome %]</LI>
+    [% END %]
+   </UL>
     
 </td>
 </tr>
