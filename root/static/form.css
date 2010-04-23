@@ -81,3 +81,10 @@ fieldset.radiogroup.label {
 	margin-left: 0em;
 }
 
+dt {
+    margin-top: 1em;
+}
+
+dd {
+    font-weight: normal;
+}

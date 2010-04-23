@@ -1,36 +1,13 @@
 
-<table name="view">
-
-<tr>
-<td class="view_label"><b>Nome:</b></td>
-<td>
-    
-    [%  item.nome %]
-    
-</td>
-</tr>
-
-<tr>
-<td class="view_label"><b>Coordenação:</b></td>
-<td>
-    
-    [%  item.coordenacao.nome %]
-    
-</td>
-</tr>
-
-<tr>
-<td class="view_label"><b>Gerente:</b></td>
-<td>
-    
-    [%  item.gerente.nome %]
-    
-</td>
-</tr>
-
-<tr>
-<td class="view_label"><b>Objetivos, metas e medições:</b></td>
-<td>
+<DL>
+<DT>Nome:</DT>
+<DD>[%  item.nome %]</DD>
+<DT>Coordenação:</DT>
+<DD>[%  item.coordenacao.nome %]</DD>
+<DT>Gerente:</DT>
+<DD>[%  item.gerente.nome %]</DD>
+<DT>Objetivos, metas e medições:</DT>
+<DD>
    <UL>
     [% FOREACH val IN
        item.objetivos({},
@@ -69,12 +46,9 @@
       (<A HREF="[% c.uri_for_action('/objetivo/edit') %]">Adicionar Objetivo</A> |
         <A HREF="[% c.uri_for_action('/meta/edit') %]">Adicionar Meta</A> |
           <A HREF="[% c.uri_for_action('/medico/edit') %]">Adicionar Medição</A>)
-</td>
-</tr>
-
-<tr>
-<td class="view_label"><b>Status:</b></td>
-<td>
+</DD>
+<DT>Status:</DT>
+<DD>
     
    <UL>
     [% FOR val = item.statuses %]
@@ -85,12 +59,66 @@
    </UL>
     
      (<A HREF="[% c.uri_for_action('/status/edit') %]">Adicionar Status</A>)
-</td>
-</tr>
+</DD>
 
-<tr>
-<td class="view_label"><b>Alocacoes:</b></td>
-<td>
+<DT>Lições Aprendidas:</DT>
+<DD>
+    
+   <UL>
+    [% FOR val = item.licoesaprendidas %]
+     <LI>[% val.data.dmy %]: [% val.descricao %]
+         (<A HREF="[% c.uri_for_action('/licoesaprendida/edit', val.licao_id) %]">Editar</A> | <A HREF="[% c.uri_for_action('/licoesaprendida/destroy', val.licao_id) %]">Remover</A>)
+     </LI>
+    [% END %]
+   </UL>
+    
+     (<A HREF="[% c.uri_for_action('/licoesaprendida/edit') %]">Adicionar Lições Aprendidas</A>)
+</DD>
+<DT>Desembolsos:</DT>
+<DD>
+   <TABLE>
+    <THEAD>
+     <TR>
+      <TH ROWSPAN="2">Data Prevista</TH>
+      <TH ROWSPAN="2">Valor</TH>
+      <TH>Data empenho</TH>
+      <TH>Empenho</TH>
+      <TH>Data NAD</TH>
+      <TH>NAD</TH>
+      <TH ROWSPAN="2">Ações</TH>
+     </TR>
+     <TR>
+      <TH>Data Liquidação</TH>
+      <TH>Liquidação</TH>
+      <TH>Data Pagamento</TH>
+      <TH>Pagamento</TH>
+     </TR>
+    </THEAD>
+    <TBODY>
+    [% FOR val = item.licoesaprendidas %]
+     <TR>
+      <TD ROWSPAN="2">[% val.data_prevista.dmy %]</TD>
+      <TD ROWSPAN="2">[% val.valor %]</TD>
+      <TD>[% val.data_empenho.dmy %]</TD>
+      <TD>[% val.empenho %]</TD>
+      <TD>[% val.data_nad.dmy %]</TD>
+      <TD>[% val.nad %]</TD>
+     <TD ROWSPAN="2"><A HREF="[% c.uri_for_action('/licoesaprendida/edit', val.licao_id) %]">Editar</A> | <A HREF="[% c.uri_for_action('/licoesaprendida/destroy', val.licao_id) %]">Remover</A></TD>
+     </TR>
+     <TR>
+      <TD>[% val.data_liquidacao.dmy %]</TD>
+      <TD>[% val.liquidacao %]</TD>
+      <TD>[% val.data_pagamento.dmy %]</TD>
+      <TD>[% val.pagamento %]</TD>
+
+     </LI>
+    [% END %]
+    </TBODY>
+   </TABLE>
+     (<A HREF="[% c.uri_for_action('/desembolso/edit') %]">Adicionar Desembolso</A>)
+</DD>
+<DT>Alocacoes:</DT>
+<DD>
    <DL>
     [% FOR val = item.alocacoes %]
      <DT>[% val.pessoa.nome %]</DT>
@@ -101,12 +129,9 @@
    </DL>
 
       (<A HREF="[% c.uri_for_action('/alocaco/edit') %]">Adicionar Alocação</A>)
-</td>
-</tr>
-
-<tr>
-<td class="view_label"><b>Riscos:</b></td>
-<td>
+</DD>
+<DT>Riscos:</DT>
+<DD>
    <UL>
     [% FOR val = item.riscos %]
      <LI>[% val.descricao %]  ([% val.data_inicio.dmy %] a [% val.data_fim.dmy %])
@@ -115,12 +140,10 @@
    </UL>
 
       (<A HREF="[% c.uri_for_action('/risco/edit') %]">Adicionar Risco</A>)
-</td>
-</tr>
+</DD>
 
-<tr>
-<td class="view_label"><b>Restricoes:</b></td>
-<td>
+<DT>Restricoes:</DT>
+<DD>
 
    <UL>
     [% FOR val = item.restricoes_rs({},{ order_by => 'me.importancia' }).all %]
@@ -129,39 +152,16 @@
    </UL>
     
     (<A HREF="[% c.uri_for_action('/restrico/edit') %]">Adicionar Restrição</A>)
-</td>
-</tr>
+</DD>
+<DT>Data Inicio:</DT>
+<DD>[%  item.data_inicio.dmy %]</DD>
+<DT>Data Fim:</DT>
+<DD>[%  item.data_fim.dmy %]</DD>
+<DT>Valor:</DT>
+<DD>[%  item.valor %]</DD>
 
+</DL>
 
-
-<tr>
-<td class="view_label"><b>Data Inicio:</b></td>
-<td>
-    
-    [%  item.data_inicio.dmy %]
-    
-</td>
-</tr>
-
-<tr>
-<td class="view_label"><b>Data Fim:</b></td>
-<td>
-    
-    [%  item.data_fim.dmy %]
-    
-</td>
-</tr>
-
-<tr>
-<td class="view_label"><b>Valor:</b></td>
-<td>
-    
-    [%  item.valor %]
-    
-</td>
-</tr>
-
-</table>
 <hr />
 <a href="[% c.uri_for( 'edit', item.projeto_id,  ) %]">Edit</a>
 <hr />
