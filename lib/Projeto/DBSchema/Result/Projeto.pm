@@ -103,6 +103,36 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=head2 desembolsos
+
+Type: has_many
+
+Related object: L<Projeto::DBSchema::Result::Desembolso>
+
+=cut
+
+__PACKAGE__->has_many(
+  "desembolsos",
+  "Projeto::DBSchema::Result::Desembolso",
+  { "foreign.projeto_id" => "self.projeto_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+=head2 licoes_aprendidas
+
+Type: has_many
+
+Related object: L<Projeto::DBSchema::Result::LicoesAprendida>
+
+=cut
+
+__PACKAGE__->has_many(
+  "licoes_aprendidas",
+  "Projeto::DBSchema::Result::LicoesAprendida",
+  { "foreign.projeto_id" => "self.projeto_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 objetivos
 
 Type: has_many
@@ -194,8 +224,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-22 19:27:28
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:VKj8Q4usBZPpZGvwB4Y+cw
+# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-23 11:08:45
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:C7nQFPIaq/PZOWXX7feIyg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
