@@ -14,13 +14,10 @@
                       { prefetch => { metas => 'medicoes' },
                         order_by => [ 'me.objetivo_id', 'metas.data_fim', 'medicoes.data_medicao' ] }) %]
      <LI>[% val.descricao %]
-         (<A HREF="[% c.uri_for_action('/objetivo/edit', val.objetivo_id) %]">Editar</A> | <A HREF="[% c.uri_for_action('/objetivo/destroy', val.objetivo_id) %]">Remover</A>)
      </LI>
      <UL>
      [% FOREACH meta IN val.metas %]
-       <LI>[% meta.descricao %] ([% meta.data_inicio.dmy %] a [% meta.data_fim.dmy %])
-           (<A HREF="[% c.uri_for_action('/meta/edit', meta.meta_id) %]">Editar</A> | <A HREF="[% c.uri_for_action('/meta/destroy', meta.meta_id) %]">Remover</A>)
-       </LI>
+       <LI>[% meta.descricao %] ([% meta.data_inicio.dmy %] a [% meta.data_fim.dmy %])</LI>
        <UL>
        [% FOREACH medicao IN meta.medicoes %]
          <LI>
@@ -33,8 +30,6 @@
              Aceite registrado em [% medicao.aceite_registrado.dmy %].
              [% END %]
 
-             (<A HREF="[% c.uri_for_action('/medico/edit', medicao.medicao_id) %]">Editar</A> | <A HREF="[% c.uri_for_action('/medico/destroy', medicao.medicao_id) %]">Remover</A>)
-
          </LI>
        [% END %]
        </UL>
@@ -43,9 +38,6 @@
     [% END %]
    </UL>
     
-      (<A HREF="[% c.uri_for_action('/objetivo/edit') %]">Adicionar Objetivo</A> |
-        <A HREF="[% c.uri_for_action('/meta/edit') %]">Adicionar Meta</A> |
-          <A HREF="[% c.uri_for_action('/medico/edit') %]">Adicionar Medição</A>)
 </DD>
 <DT>Status:</DT>
 <DD>
@@ -53,12 +45,10 @@
    <UL>
     [% FOR val = item.statuses %]
      <LI>[% val.data.dmy %]: [% val.descricao %]
-         (<A HREF="[% c.uri_for_action('/status/edit', val.status_id) %]">Editar</A> | <A HREF="[% c.uri_for_action('/status/destroy', val.status_id) %]">Remover</A>)
      </LI>
     [% END %]
    </UL>
     
-     (<A HREF="[% c.uri_for_action('/status/edit') %]">Adicionar Status</A>)
 </DD>
 
 <DT>Lições Aprendidas:</DT>
@@ -67,12 +57,10 @@
    <UL>
     [% FOR val = item.licoes_aprendidas %]
      <LI>[% val.data.dmy %]: [% val.descricao %]
-         (<A HREF="[% c.uri_for_action('/licoesaprendida/edit', val.licao_id) %]">Editar</A> | <A HREF="[% c.uri_for_action('/licoesaprendida/destroy', val.licao_id) %]">Remover</A>)
      </LI>
     [% END %]
    </UL>
     
-     (<A HREF="[% c.uri_for_action('/licoesaprendida/edit') %]">Adicionar Lições Aprendidas</A>)
 </DD>
 <DT>Desembolsos:</DT>
 <DD>
@@ -85,7 +73,6 @@
       <TH>Empenho</TH>
       <TH>Data NAD</TH>
       <TH>NAD</TH>
-      <TH ROWSPAN="2">Ações</TH>
      </TR>
      <TR>
       <TH>Data Liquidação</TH>
@@ -103,7 +90,6 @@
       <TD>[% val.empenho %]</TD>
       <TD>[% val.data_nad.dmy %]</TD>
       <TD>[% val.nad %]</TD>
-     <TD ROWSPAN="2"><A HREF="[% c.uri_for_action('/desembolso/edit', val.desembolso_id) %]">Editar</A> | <A HREF="[% c.uri_for_action('/desembolso/destroy', val.desembolso_id) %]">Remover</A></TD>
      </TR>
      <TR>
       <TD>[% val.data_liquidacao.dmy %]</TD>
@@ -115,7 +101,6 @@
     [% END %]
     </TBODY>
    </TABLE>
-     (<A HREF="[% c.uri_for_action('/desembolso/edit') %]">Adicionar Desembolso</A>)
 </DD>
 <DT>Alocacoes:</DT>
 <DD>
@@ -123,23 +108,19 @@
     [% FOR val = item.alocacoes %]
      <DT>[% val.pessoa.nome %]</DT>
      <DD>[% val.papel.descricao %] ([% val.data_inicio.dmy %] a [% val.data_fim.dmy %])
-         (<A HREF="[% c.uri_for_action('/alocaco/edit', val.projeto_id, val.pessoa_id, val.data_inicio, val.data_fim) %]">Editar</A> | <A HREF="[% c.uri_for_action('/alocaco/destroy', val.projeto_id, val.pessoa_id, val.data_inicio, val.data_fim) %]">Remover</A>)
      </DD>
     [% END %]
    </DL>
 
-      (<A HREF="[% c.uri_for_action('/alocaco/edit') %]">Adicionar Alocação</A>)
 </DD>
 <DT>Riscos:</DT>
 <DD>
    <UL>
     [% FOR val = item.riscos %]
      <LI>[% val.descricao %]  ([% val.data_inicio.dmy %] a [% val.data_fim.dmy %])
-     (<A HREF="[% c.uri_for_action('/risco/edit', val.risco_id) %]">Editar</A> | <A HREF="[% c.uri_for_action('/risco/destroy', val.risco_id) %]">Remover</A>)     </LI>
     [% END %]
    </UL>
 
-      (<A HREF="[% c.uri_for_action('/risco/edit') %]">Adicionar Risco</A>)
 </DD>
 
 <DT>Restricoes:</DT>
@@ -147,11 +128,10 @@
 
    <UL>
     [% FOR val = item.restricoes_rs({},{ order_by => 'me.importancia' }).all %]
-     <LI>[% val.tipo_restricao.nome %] (<A HREF="[% c.uri_for_action('/risco/destroy', val.importancia, val.projeto_id, val.tipo_restricao_id ) %]">Remover</A>)</LI>
+     <LI>[% val.tipo_restricao.nome %]</LI>
     [% END %]
    </UL>
     
-    (<A HREF="[% c.uri_for_action('/restrico/edit') %]">Adicionar Restrição</A>)
 </DD>
 <DT>Data Inicio:</DT>
 <DD>[%  item.data_inicio.dmy %]</DD>
@@ -162,9 +142,5 @@
 
 </DL>
 
-<hr />
-<a href="[% c.uri_for( 'edit', item.projeto_id,  ) %]">Edit</a>
-<hr />
-<a href="[% c.uri_for( 'list' ) %]">List</a>
 
 

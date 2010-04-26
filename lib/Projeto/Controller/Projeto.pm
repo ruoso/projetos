@@ -5,6 +5,12 @@ package Projeto::Controller::Projeto;
 
 use base "Catalyst::Example::Controller::InstantCRUD";
 
+sub report :Local :Args(1) {
+    my ($self, $c, $id) = @_;
+    $c->stash->{item} = $c->model('Projeto')->find
+      ({ projeto_id => $id });
+}
+
 
 {
     package Projeto::Controller::Projeto::ProjetoForm;

@@ -23,7 +23,7 @@ sub end :Private {
 
     use DateTime;
 
-    has '+item_class' => ( default => 'Status' );
+    has '+item_class' => ( default => 'Desembolso' );
 
     has_field 'projeto' => ( type => 'Select', );
     has_field 'data_prevista' => ( type => 'Date' );
