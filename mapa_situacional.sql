@@ -71,7 +71,8 @@ CREATE TABLE coordenacoes (
     coordenacao_id integer NOT NULL,
     data_inicio date,
     data_fim date,
-    nome character varying(100) NOT NULL
+    nome character varying(100) NOT NULL,
+    direcao character varying
 );
 
 
@@ -95,6 +96,82 @@ ALTER TABLE public.coordenacoes_coordenacao_id_seq OWNER TO fila;
 --
 
 ALTER SEQUENCE coordenacoes_coordenacao_id_seq OWNED BY coordenacoes.coordenacao_id;
+
+
+--
+-- Name: desembolsos; Type: TABLE; Schema: public; Owner: fila; Tablespace: 
+--
+
+CREATE TABLE desembolsos (
+    desembolso_id integer NOT NULL,
+    projeto_id integer NOT NULL,
+    data_prevista date NOT NULL,
+    valor numeric(10,2),
+    data_empenho date,
+    empenho character varying,
+    data_nad date,
+    nad character varying,
+    data_liquidacao date,
+    liquidacao character varying,
+    data_pagamento date,
+    pagamento character varying
+);
+
+
+ALTER TABLE public.desembolsos OWNER TO fila;
+
+--
+-- Name: desembolsos_desembolso_id_seq; Type: SEQUENCE; Schema: public; Owner: fila
+--
+
+CREATE SEQUENCE desembolsos_desembolso_id_seq
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.desembolsos_desembolso_id_seq OWNER TO fila;
+
+--
+-- Name: desembolsos_desembolso_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: fila
+--
+
+ALTER SEQUENCE desembolsos_desembolso_id_seq OWNED BY desembolsos.desembolso_id;
+
+
+--
+-- Name: licoes_aprendidas; Type: TABLE; Schema: public; Owner: fila; Tablespace: 
+--
+
+CREATE TABLE licoes_aprendidas (
+    licao_id integer NOT NULL,
+    projeto_id integer NOT NULL,
+    data date NOT NULL,
+    descricao character varying
+);
+
+
+ALTER TABLE public.licoes_aprendidas OWNER TO fila;
+
+--
+-- Name: licoes_aprendidas_licao_id_seq; Type: SEQUENCE; Schema: public; Owner: fila
+--
+
+CREATE SEQUENCE licoes_aprendidas_licao_id_seq
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.licoes_aprendidas_licao_id_seq OWNER TO fila;
+
+--
+-- Name: licoes_aprendidas_licao_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: fila
+--
+
+ALTER SEQUENCE licoes_aprendidas_licao_id_seq OWNED BY licoes_aprendidas.licao_id;
 
 
 --
@@ -474,6 +551,20 @@ ALTER TABLE coordenacoes ALTER COLUMN coordenacao_id SET DEFAULT nextval('coorde
 
 
 --
+-- Name: desembolso_id; Type: DEFAULT; Schema: public; Owner: fila
+--
+
+ALTER TABLE desembolsos ALTER COLUMN desembolso_id SET DEFAULT nextval('desembolsos_desembolso_id_seq'::regclass);
+
+
+--
+-- Name: licao_id; Type: DEFAULT; Schema: public; Owner: fila
+--
+
+ALTER TABLE licoes_aprendidas ALTER COLUMN licao_id SET DEFAULT nextval('licoes_aprendidas_licao_id_seq'::regclass);
+
+
+--
 -- Name: medicao_id; Type: DEFAULT; Schema: public; Owner: fila
 --
 
@@ -541,6 +632,22 @@ ALTER TABLE tipos_objetivo ALTER COLUMN tipo_objetivo_id SET DEFAULT nextval('ti
 --
 
 ALTER TABLE tipos_restricao ALTER COLUMN tipo_restricao_id SET DEFAULT nextval('tipos_restricao_tipo_restricao_id_seq'::regclass);
+
+
+--
+-- Name: desembolsos_pkey; Type: CONSTRAINT; Schema: public; Owner: fila; Tablespace: 
+--
+
+ALTER TABLE ONLY desembolsos
+    ADD CONSTRAINT desembolsos_pkey PRIMARY KEY (desembolso_id);
+
+
+--
+-- Name: licoes_aprendidas_pkey; Type: CONSTRAINT; Schema: public; Owner: fila; Tablespace: 
+--
+
+ALTER TABLE ONLY licoes_aprendidas
+    ADD CONSTRAINT licoes_aprendidas_pkey PRIMARY KEY (licao_id);
 
 
 --
@@ -656,6 +763,14 @@ ALTER TABLE ONLY tipos_restricao
 
 
 --
+-- Name: desembolsos_projeto_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: fila
+--
+
+ALTER TABLE ONLY desembolsos
+    ADD CONSTRAINT desembolsos_projeto_id_fkey FOREIGN KEY (projeto_id) REFERENCES projetos(projeto_id);
+
+
+--
 -- Name: fk_coordenacao_projeto; Type: FK CONSTRAINT; Schema: public; Owner: fila
 --
 
@@ -757,6 +872,14 @@ ALTER TABLE ONLY restricoes
 
 ALTER TABLE ONLY objetivos
     ADD CONSTRAINT fk_tipo_do_objetivo FOREIGN KEY (tipo_objetivo_id) REFERENCES tipos_objetivo(tipo_objetivo_id);
+
+
+--
+-- Name: licoes_aprendidas_projeto_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: fila
+--
+
+ALTER TABLE ONLY licoes_aprendidas
+    ADD CONSTRAINT licoes_aprendidas_projeto_id_fkey FOREIGN KEY (projeto_id) REFERENCES projetos(projeto_id);
 
 
 --
