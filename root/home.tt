@@ -1,1 +1,3 @@
 <P>Escolha um dos cadastros acima.</P>
+
+<P>Você também pode baixar o <a href="[% c.uri_for('xmind') %]">XMind</A> de todos os projetos.</P>
