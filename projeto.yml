@@ -1,6 +1,6 @@
 ---
 name: Projeto
-
+default_view: TT
 View::TT:
     WRAPPER: 'wrapper.tt'
 

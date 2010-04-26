@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns:fo="http://www.w3.org/1999/XSL/Format"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:xhtml="http://www.w3.org/1999/xhtml"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="urn:xmind:xmap:xmlns:content:2.0"
+   targetNamespace="urn:xmind:xmap:xmlns:content:2.0"
+   elementFormDefault="qualified">
+
+  <xs:element name="xmap-content">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="sheet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="topic" type="topic" />
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="children">
+    <xs:sequence>
+      <xs:element name="topics">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="topic" type="topic" maxOccurs="unbounded" />
+          </xs:sequence>
+          <xs:attribute name="type" type="xs:string" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="topic">
+    <xs:sequence>
+      <xs:element name="title" type="xs:string" />
+      <xs:element name="children" minOccurs="0" type="children" />
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" />
+    <xs:attribute name="branch" type="xs:string" />
+  </xs:complexType>
+
+</xs:schema>
