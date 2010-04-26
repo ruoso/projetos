@@ -11,6 +11,14 @@ sub report :Local :Args(1) {
       ({ projeto_id => $id });
 }
 
+sub xmind :Local :Args(1) {
+    my ($self, $c, $id) = @_;
+    my $projeto = $c->model('DBICSchemamodel::Projeto')->find
+      ({ projeto_id => $id });
+    #$c->forward($c->view('XMind::Projeto', $projeto));
+    $c->view('XMind::Projeto', $projeto)->process($c);
+}
+
 
 {
     package Projeto::Controller::Projeto::ProjetoForm;

@@ -17,6 +17,7 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element maxOccurs="unbounded" name="topic" type="topic" />
+              <xs:element name="title" type="xs:string" />
             </xs:sequence>
             <xs:attribute name="id" type="xs:ID" />
           </xs:complexType>
@@ -46,6 +47,7 @@
     </xs:sequence>
     <xs:attribute name="id" type="xs:ID" />
     <xs:attribute name="branch" type="xs:string" />
+    <xs:attribute name="structure-class" type="xs:string" />
   </xs:complexType>
 
 </xs:schema>
