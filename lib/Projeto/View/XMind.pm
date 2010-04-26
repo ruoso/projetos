@@ -44,9 +44,11 @@ sub process {
     $c->res->header('Content-disposition','attachment; filename=file.xmind');
     $c->res->content_type('application/xmind');
 
+    use bytes;
     $zip->writeToFileHandle($fh);
-    $fh->seek(0, 0);
-    $c->res->body($fh);
+    $fh->sync;
+    $fh->seek(0,0);
+    $c->res->body(join '', <$fh>);
 }
 
 sub translate {

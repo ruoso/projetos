@@ -38,6 +38,13 @@ sub default : Private {
     $c->response->body("404 Not Found");
 };
 
+sub xmind : Local :Args(0) {
+    my ($self, $c) = @_;
+    my $projetos = $c->model('DBICSchemamodel::Projeto')->search;
+    #$c->forward($c->view('XMind::Projeto', $projeto));
+    $c->view('XMind::Geral', $projetos)->process($c);
+}
+
 =head2 index
 
 =cut
