@@ -7,7 +7,7 @@ use base "Catalyst::Example::Controller::InstantCRUD";
 
 sub report :Local :Args(1) {
     my ($self, $c, $id) = @_;
-    $c->stash->{item} = $c->model('Projeto')->find
+    $c->stash->{item} = $c->model('DBICSchemamodel::Projeto')->find
       ({ projeto_id => $id });
 }
 
