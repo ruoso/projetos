@@ -1,6 +1,7 @@
 
 <table>
 <tr>
+<th> [% order_by_column_link('direcao', 'Direção') %] </th>
 
 <th> [% order_by_column_link('nome', 'Nome') %] </th>
 
@@ -14,6 +15,12 @@
 [% WHILE (row = result.next) %]
     <tr>
     
+    <td>
+    
+    [%  row.direcao %]
+    
+    </td>
+
     <td>
     
     [%  row.nome %]

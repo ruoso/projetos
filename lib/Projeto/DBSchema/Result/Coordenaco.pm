@@ -43,6 +43,11 @@ __PACKAGE__->table("coordenacoes");
   is_nullable: 0
   size: 100
 
+=head2 direcao
+
+  data_type: 'character varying'
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -59,6 +64,8 @@ __PACKAGE__->add_columns(
   { data_type => "date", is_nullable => 1 },
   "nome",
   { data_type => "character varying", is_nullable => 0, size => 100 },
+  "direcao",
+  { data_type => "character varying", is_nullable => 1 },
 );
 __PACKAGE__->set_primary_key("coordenacao_id");
 
@@ -80,8 +87,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-22 18:29:15
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:3krkt/UNMJjP1rcXtx6L+Q
+# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-26 11:02:08
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:cvJPWh+6/6P92Ud9BM0obA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
