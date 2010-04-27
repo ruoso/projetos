@@ -53,7 +53,13 @@ __PACKAGE__->table("objetivos");
 
   data_type: 'integer'
   is_foreign_key: 1
-  is_nullable: 0
+  is_nullable: 1
+
+=head2 servico_id
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 1
 
 =cut
 
@@ -74,7 +80,9 @@ __PACKAGE__->add_columns(
   "descricao",
   { data_type => "character varying", is_nullable => 0, size => 2000 },
   "projeto_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
+  "servico_id",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
 );
 __PACKAGE__->set_primary_key("objetivo_id");
 
@@ -107,7 +115,32 @@ __PACKAGE__->belongs_to(
   "projeto",
   "Projeto::DBSchema::Result::Projeto",
   { projeto_id => "projeto_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
+
+=head2 servico
+
+Type: belongs_to
+
+Related object: L<Projeto::DBSchema::Result::Servico>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "servico",
+  "Projeto::DBSchema::Result::Servico",
+  { servico_id => "servico_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
 );
 
 =head2 tipo_objetivo
@@ -126,8 +159,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-22 18:29:15
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:rvRWggKK4ps0SuwYJyEeiQ
+# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-27 16:43:28
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:CwXvgO1yKqTb6inocYjRSA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

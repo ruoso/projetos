@@ -49,6 +49,16 @@ __PACKAGE__->table("riscos");
   is_nullable: 0
   size: 100
 
+=head2 efeito
+
+  data_type: 'character varying'
+  is_nullable: 1
+
+=head2 acao_planejada
+
+  data_type: 'character varying'
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -67,6 +77,10 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "descricao",
   { data_type => "character varying", is_nullable => 0, size => 100 },
+  "efeito",
+  { data_type => "character varying", is_nullable => 1 },
+  "acao_planejada",
+  { data_type => "character varying", is_nullable => 1 },
 );
 __PACKAGE__->set_primary_key("risco_id");
 
@@ -88,8 +102,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-22 18:29:15
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:/esk5pJhtoKTTvZniEA/rg
+# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-27 16:43:28
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:6rBgqXYfiQVI7fYUChROgQ
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

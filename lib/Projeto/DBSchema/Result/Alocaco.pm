@@ -24,7 +24,7 @@ __PACKAGE__->table("alocacoes");
 
   data_type: 'integer'
   is_foreign_key: 1
-  is_nullable: 0
+  is_nullable: 1
 
 =head2 pessoa_id
 
@@ -48,11 +48,17 @@ __PACKAGE__->table("alocacoes");
   data_type: 'date'
   is_nullable: 0
 
+=head2 servico_id
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
   "projeto_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
   "pessoa_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "papel_id",
@@ -61,8 +67,19 @@ __PACKAGE__->add_columns(
   { data_type => "date", is_nullable => 0 },
   "data_fim",
   { data_type => "date", is_nullable => 0 },
+  "servico_id",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
 );
-__PACKAGE__->set_primary_key("projeto_id", "pessoa_id", "data_inicio", "data_fim");
+__PACKAGE__->add_unique_constraint(
+  "pk_alocacoes",
+  [
+    "projeto_id",
+    "servico_id",
+    "papel_id",
+    "data_inicio",
+    "data_fim",
+  ],
+);
 
 =head1 RELATIONS
 
@@ -108,12 +125,37 @@ __PACKAGE__->belongs_to(
   "projeto",
   "Projeto::DBSchema::Result::Projeto",
   { projeto_id => "projeto_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
+
+=head2 servico
+
+Type: belongs_to
+
+Related object: L<Projeto::DBSchema::Result::Servico>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "servico",
+  "Projeto::DBSchema::Result::Servico",
+  { servico_id => "servico_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-22 18:29:15
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:js0mon573mC++VNGJIGFeg
+# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-27 16:43:28
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jrP3FYmzh5a1HgeH4e83EA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

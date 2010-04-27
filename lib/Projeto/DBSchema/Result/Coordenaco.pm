@@ -86,9 +86,24 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=head2 servicos
 
-# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-26 11:02:08
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:cvJPWh+6/6P92Ud9BM0obA
+Type: has_many
+
+Related object: L<Projeto::DBSchema::Result::Servico>
+
+=cut
+
+__PACKAGE__->has_many(
+  "servicos",
+  "Projeto::DBSchema::Result::Servico",
+  { "foreign.coordenacao_id" => "self.coordenacao_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-27 16:43:28
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:upbrmVoMa55AGB7vgtCyIg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
