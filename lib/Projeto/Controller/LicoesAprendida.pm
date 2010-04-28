@@ -27,7 +27,7 @@ sub end :Private {
 
     has_field 'projeto' => ( type => 'Select', );
     has_field 'data' => ( type => 'Date' );
-    has_field 'descricao' => ( type => 'TextArea', required => 1, );
+    has_field 'descricao' => ( type => 'TextArea', required => 1, rows=>5, cols=>80 );
     has_field 'submit' => ( widget => 'submit' );
 
     sub options_projeto {

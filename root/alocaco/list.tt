@@ -1,8 +1,10 @@
+<a href="[% c.uri_for( 'edit' ) %]">Add</a>
 
 <table>
+<thead>
 <tr>
 
-<th> [% order_by_column_link('projeto', 'Projeto') %] </th>
+<th> Projeto ou Serviço </th>
 
 
 <th> [% order_by_column_link('papel', 'Papel') %] </th>
@@ -18,24 +20,28 @@
 
  
 </tr>
+</thead>
+<tbody>
 [% WHILE (row = result.next) %]
     <tr>
     
     <td>
     
-    [%  row.projeto %]
+    [%  row.projeto.nome %]
+    
+    [%  row.servico.nome %]
     
     </td>
     
     <td>
     
-    [%  row.papel %]
+    [%  row.papel.nome %]
     
     </td>
     
     <td>
     
-    [%  row.pessoa %]
+    [%  row.pessoa.nome %]
     
     </td>
     
@@ -52,13 +58,14 @@
     </td>
      
     [% SET id = row.$pri %]
-    <td><a href="[% c.uri_for( 'view', row.projeto_id, row.pessoa_id, row.data_inicio, row.data_fim,  ) %]">View</a></td>
-    <td><a href="[% c.uri_for( 'edit', row.projeto_id, row.pessoa_id, row.data_inicio, row.data_fim,  ) %]">Edit</a></td>
-    <td><a href="[% c.uri_for( 'destroy', row.projeto_id, row.pessoa_id, row.data_inicio, row.data_fim,  ) %]">Delete</a></td>
+    <td><a href="[% c.uri_for( 'view', row.alocacao_id,  ) %]">View</a></td>
+    <td><a href="[% c.uri_for( 'edit', row.alocacao_id  ) %]">Edit</a></td>
+    <td><a href="[% c.uri_for( 'destroy', row.alocacao_id  ) %]">Delete</a></td>
     </tr>
 [% END %]
+</tbody>
 </table>
 [% PROCESS pager.tt %]
 <br/>
-<a href="[% c.uri_for( 'edit' ) %]">Add</a>
+
 

@@ -34,8 +34,7 @@ sub xmind :Local :Args(1) {
     has_field 'coordenacao' => ( type => 'Select', );
     has_field 'gerente' => ( type => 'Select', );
     has_field 'nome' => ( type => 'Text', required => 1, );
-    has_field 'status' => ( type => 'TextArea', );
-    has_field 'valor' => ( type => 'TextArea', );
+    has_field 'valor' => ( type => 'Text', );
     has_field 'data_inicio' => ( type => 'Date' );
     has_field 'data_fim' => ( type => 'Date' );
     has_field 'submit' => ( widget => 'submit' );

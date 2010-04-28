@@ -17,8 +17,8 @@ use base "Catalyst::Example::Controller::InstantCRUD";
 
     has '+item_class' => ( default => 'Coordenaco' );
 
-    has_field 'direcao' => ( type => 'TextArea', required => 1, );
-    has_field 'nome' => ( type => 'TextArea', required => 1, );
+    has_field 'direcao' => ( type => 'Text', required => 1 );
+    has_field 'nome' => ( type => 'Text', required => 1, );
     has_field 'data_inicio' => ( type => 'Date' );
     has_field 'data_fim' => ( type => 'Date' );
     has_field 'submit' => ( widget => 'submit' )

@@ -1,0 +1,75 @@
+
+<DL>
+<DT>Nome:</DT>
+<DD>[%  item.nome %]</DD>
+<DT>Coordenação:</DT>
+<DD>[%  item.coordenacao.nome %]</DD>
+<DT>Objetivos, metas e medições:</DT>
+<DD>
+   <UL>
+    [% FOREACH val IN
+       item.objetivos({},
+                      { prefetch => { metas => 'medicoes' },
+                        order_by => [ 'me.objetivo_id', 'metas.data_fim', 'medicoes.data_medicao' ] }) %]
+     <LI>[% val.descricao %]
+         (<A HREF="[% c.uri_for_action('/objetivo/edit', val.objetivo_id) %]">Editar</A> | <A HREF="[% c.uri_for_action('/objetivo/destroy', val.objetivo_id) %]">Remover</A>)
+     </LI>
+     <UL>
+     [% FOREACH meta IN val.metas %]
+       <LI>[% meta.descricao %] ([% meta.data_inicio.dmy %] a [% meta.data_fim.dmy %])
+           (<A HREF="[% c.uri_for_action('/meta/edit', meta.meta_id) %]">Editar</A> | <A HREF="[% c.uri_for_action('/meta/destroy', meta.meta_id) %]">Remover</A>)
+       </LI>
+       <UL>
+       [% FOREACH medicao IN meta.medicoes %]
+         <LI>
+             [% IF medicao.data_medicao %]
+              [% medicao.data_medicao.dmy %][% IF medicao.percentual ; ' (' _ medicao.percentual _ '%)' ; END %]:
+             [% END %]
+             [% medicao.descricao %]<BR>
+                         
+             [% IF medicao.aceite_registrado %]
+             Aceite registrado em [% medicao.aceite_registrado.dmy %].
+             [% END %]
+
+             (<A HREF="[% c.uri_for_action('/medico/edit', medicao.medicao_id) %]">Editar</A> | <A HREF="[% c.uri_for_action('/medico/destroy', medicao.medicao_id) %]">Remover</A>)
+
+         </LI>
+       [% END %]
+       </UL>
+     [% END %]
+     </UL>
+    [% END %]
+   </UL>
+    
+      (<A HREF="[% c.uri_for_action('/objetivo/edit') %]">Adicionar Objetivo</A> |
+        <A HREF="[% c.uri_for_action('/meta/edit') %]">Adicionar Meta</A> |
+          <A HREF="[% c.uri_for_action('/medico/edit') %]">Adicionar Medição</A>)
+</DD>
+
+<DT>Alocacoes:</DT>
+<DD>
+   <DL>
+    [% FOR val = item.alocacoes %]
+     <DT>[% val.pessoa.nome %]</DT>
+     <DD>[% val.papel.descricao %] ([% val.data_inicio.dmy %] a [% val.data_fim.dmy %])
+         (<A HREF="[% c.uri_for_action('/alocaco/edit', val.alocacao_id ) %]">Editar</A> | <A HREF="[% c.uri_for_action('/alocaco/destroy', val.alocacao_id ) %]">Remover</A>)
+     </DD>
+    [% END %]
+   </DL>
+
+      (<A HREF="[% c.uri_for_action('/alocaco/edit') %]">Adicionar Alocação</A>)
+</DD>
+
+<DT>Data Inicio:</DT>
+<DD>[%  item.data_inicio.dmy %]</DD>
+<DT>Data Fim:</DT>
+<DD>[%  item.data_fim.dmy %]</DD>
+
+</DL>
+
+<hr />
+<a href="[% c.uri_for( 'edit', item.servico_id,  ) %]">Edit</a>
+<hr />
+<a href="[% c.uri_for( 'list' ) %]">List</a>
+
+

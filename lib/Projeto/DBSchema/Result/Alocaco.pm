@@ -54,6 +54,13 @@ __PACKAGE__->table("alocacoes");
   is_foreign_key: 1
   is_nullable: 1
 
+=head2 alocacao_id
+
+  data_type: 'integer'
+  is_auto_increment: 1
+  is_nullable: 0
+  sequence: 'alocacoes_id_alocacao_seq'
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -69,16 +76,22 @@ __PACKAGE__->add_columns(
   { data_type => "date", is_nullable => 0 },
   "servico_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
+  "alocacao_id",
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "alocacoes_id_alocacao_seq",
+  },
+);
+__PACKAGE__->set_primary_key("alocacao_id");
+__PACKAGE__->add_unique_constraint(
+  "alocacoes_servico",
+  ["servico_id", "pessoa_id", "papel_id", "data_inicio", "data_fim"],
 );
 __PACKAGE__->add_unique_constraint(
-  "pk_alocacoes",
-  [
-    "projeto_id",
-    "servico_id",
-    "papel_id",
-    "data_inicio",
-    "data_fim",
-  ],
+  "alocacoes_projeto",
+  ["projeto_id", "pessoa_id", "papel_id", "data_inicio", "data_fim"],
 );
 
 =head1 RELATIONS
@@ -154,8 +167,9 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-27 16:43:28
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jrP3FYmzh5a1HgeH4e83EA
+# Created by DBIx::Class::Schema::Loader v0.06000 @ 2010-04-27 18:46:04
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Ccy6P4YqNF+fB+YbiDm1Hw
+
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

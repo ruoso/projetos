@@ -1,5 +1,7 @@
+<a href="[% c.uri_for( 'edit' ) %]">Add</a>
 
 <table>
+<thead>
 <tr>
 
 <th> [% order_by_column_link('nome', 'Nome') %] </th>
@@ -26,6 +28,8 @@
 
  
 </tr>
+</thead>
+<tbody>
 [% WHILE (row = result.next) %]
     <tr>
 
@@ -90,8 +94,9 @@
     <td><a href="[% c.uri_for( 'destroy', row.pessoa_id,  ) %]">Delete</a></td>
     </tr>
 [% END %]
+</tbody>
 </table>
 [% PROCESS pager.tt %]
 <br/>
-<a href="[% c.uri_for( 'edit' ) %]">Add</a>
+
 

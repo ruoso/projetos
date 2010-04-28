@@ -1,7 +1,8 @@
+<a href="[% c.uri_for( 'edit' ) %]">Add</a>
 
 <table>
+<thead>
 <tr>
-
 <th> [% order_by_column_link('descricao', 'Descricao') %] </th>
 
 <th> [% order_by_column_link('data_inicio', 'Data Inicio') %] </th>
@@ -9,9 +10,10 @@
 
 <th> [% order_by_column_link('data_fim', 'Data Fim') %] </th>
 
-
  
 </tr>
+</thead>
+<tbody>
 [% WHILE (row = result.next) %]
     <tr>
     
@@ -40,8 +42,8 @@
     <td><a href="[% c.uri_for( 'destroy', row.papel_id,  ) %]">Delete</a></td>
     </tr>
 [% END %]
+</tbody>
 </table>
 [% PROCESS pager.tt %]
 <br/>
-<a href="[% c.uri_for( 'edit' ) %]">Add</a>
 

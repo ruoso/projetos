@@ -26,7 +26,7 @@ sub end :Private {
     has '+item_class' => ( default => 'Medico' );
 
     has_field 'meta' => ( type => 'Select', );
-    has_field 'descricao' => ( type => 'TextArea', required => 1, );
+    has_field 'descricao' => ( type => 'TextArea', required => 1,  rows=>5, cols=>80);
     has_field 'data_medicao' => ( type => 'Date' );
     has_field 'percentual' => ( type => 'Text' );
     has_field 'aceite_registrado' => ( type => 'Date' );

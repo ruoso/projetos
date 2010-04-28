@@ -1,0 +1,146 @@
+
+<DL>
+<DT>Nome:</DT>
+<DD>[%  item.nome %]</DD>
+<DT>Coordenação:</DT>
+<DD>[%  item.coordenacao.nome %]</DD>
+<DT>Gerente:</DT>
+<DD>[%  item.gerente.nome %]</DD>
+<DT>Objetivos, metas e medições:</DT>
+<DD>
+   <UL>
+    [% FOREACH val IN
+       item.objetivos({},
+                      { prefetch => { metas => 'medicoes' },
+                        order_by => [ 'me.objetivo_id', 'metas.data_fim', 'medicoes.data_medicao' ] }) %]
+     <LI>[% val.descricao %]
+     </LI>
+     <UL>
+     [% FOREACH meta IN val.metas %]
+       <LI>[% meta.descricao %] ([% meta.data_inicio.dmy %] a [% meta.data_fim.dmy %])</LI>
+       <UL>
+       [% FOREACH medicao IN meta.medicoes %]
+         <LI>
+             [% IF medicao.data_medicao %]
+              [% medicao.data_medicao.dmy %][% IF medicao.percentual ; ' (' _ medicao.percentual _ '%)' ; END %]:
+             [% END %]
+             [% medicao.descricao %]<BR>
+                         
+             [% IF medicao.aceite_registrado %]
+             Aceite registrado em [% medicao.aceite_registrado.dmy %].
+             [% END %]
+
+         </LI>
+       [% END %]
+       </UL>
+     [% END %]
+     </UL>
+    [% END %]
+   </UL>
+    
+</DD>
+<DT>Status:</DT>
+<DD>
+    
+   <UL>
+    [% FOR val = item.statuses %]
+     <LI>[% val.data.dmy %]: [% val.descricao %]
+     </LI>
+    [% END %]
+   </UL>
+    
+</DD>
+
+<DT>Lições Aprendidas:</DT>
+<DD>
+    
+   <UL>
+    [% FOR val = item.licoes_aprendidas %]
+     <LI>[% val.data.dmy %]: [% val.descricao %]
+     </LI>
+    [% END %]
+   </UL>
+    
+</DD>
+<DT>Desembolsos:</DT>
+<DD>
+   <TABLE>
+    <THEAD>
+     <TR>
+      <TH ROWSPAN="2">Data Prevista</TH>
+      <TH ROWSPAN="2">Valor</TH>
+      <TH>Data empenho</TH>
+      <TH>Empenho</TH>
+      <TH>Data NAD</TH>
+      <TH>NAD</TH>
+     </TR>
+     <TR>
+      <TH>Data Liquidação</TH>
+      <TH>Liquidação</TH>
+      <TH>Data Pagamento</TH>
+      <TH>Pagamento</TH>
+     </TR>
+    </THEAD>
+    <TBODY>
+    [% FOR val = item.desembolsos %]
+     <TR>
+      <TD ROWSPAN="2">[% val.data_prevista.dmy %]</TD>
+      <TD ROWSPAN="2">[% val.valor %]</TD>
+      <TD>[% val.data_empenho.dmy %]</TD>
+      <TD>[% val.empenho %]</TD>
+      <TD>[% val.data_nad.dmy %]</TD>
+      <TD>[% val.nad %]</TD>
+     </TR>
+     <TR>
+      <TD>[% val.data_liquidacao.dmy %]</TD>
+      <TD>[% val.liquidacao %]</TD>
+      <TD>[% val.data_pagamento.dmy %]</TD>
+      <TD>[% val.pagamento %]</TD>
+
+     </LI>
+    [% END %]
+    </TBODY>
+   </TABLE>
+</DD>
+<DT>Alocacoes:</DT>
+<DD>
+   <DL>
+    [% FOR val = item.alocacoes %]
+     <DT>[% val.pessoa.nome %]</DT>
+     <DD>[% val.papel.descricao %] ([% val.data_inicio.dmy %] a [% val.data_fim.dmy %])
+     </DD>
+    [% END %]
+   </DL>
+
+</DD>
+<DT>Riscos:</DT>
+<DD>
+   <UL>
+    [% FOR val = item.riscos %]
+     <LI>[% val.descricao %]  ([% val.data_inicio.dmy %] a [% val.data_fim.dmy %])
+    [% END %]
+   </UL>
+
+</DD>
+
+<DT>Restricoes:</DT>
+<DD>
+
+   <UL>
+    [% FOR val = item.restricoes_rs({},{ order_by => 'me.importancia' }).all %]
+     <LI>[% val.tipo_restricao.nome %]</LI>
+    [% END %]
+   </UL>
+    
+</DD>
+<DT>Data Inicio:</DT>
+<DD>[%  item.data_inicio.dmy %]</DD>
+<DT>Data Fim:</DT>
+<DD>[%  item.data_fim.dmy %]</DD>
+<DT>Valor:</DT>
+<DD>[%  item.valor %]</DD>
+
+</DL>
+
+
+

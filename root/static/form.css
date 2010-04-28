@@ -26,18 +26,12 @@ fieldset textarea
 	margin: 8px 0 8px 0;
         width: 80em;
 }
-
-label {  
-        display: block;
+fieldset label {  
 	margin: 8px 10px 8px 0;	
 	text-align: left;
+        width: 10em;
 }
 
-.main_fieldset fieldset label{
-	width: 108px; 
-	font-weight: normal;
-	
-}
 
 fieldset .error_message {
        display: block;
@@ -60,7 +54,7 @@ fieldset .error select {
 	color:#006DAC;
 }
 
-fieldset .radiogroup span label {
+fieldset .radiogroup span {
 	/* undo the above style */
 	width: auto;
 	text-align: left;
@@ -76,10 +70,6 @@ fieldset.radiogroup
 	width: auto;
 }
 
-fieldset.radiogroup.label {
-	border: 0;
-	margin-left: 0em;
-}
 
 dt {
     margin-top: 1em;

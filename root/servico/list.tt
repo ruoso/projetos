@@ -1,0 +1,58 @@
+
+<a href="[% c.uri_for( 'edit' ) %]">Add</a>
+<table>
+<thead>
+<tr>
+<th> Coordenacao </th>
+
+<th> [% order_by_column_link('nome', 'Nome') %] </th>
+
+<th> [% order_by_column_link('data_inicio', 'Data Inicio') %] </th>
+
+<th> [% order_by_column_link('data_fim', 'Data Fim') %] </th>
+
+<th>Ações</th>
+</tr>
+</thead>
+<tbody>
+[% WHILE (row = result.next) %]
+    <tr>
+    
+    <td>
+    
+    [%  row.coordenacao.nome %]
+    
+    </td>
+
+    <td>
+    
+    [%  row.nome %]
+    
+    </td>
+    
+    
+    <td>
+   
+    [%  row.data_inicio.dmy %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.data_fim.dmy %]
+    
+    </td>
+    
+    [% SET id = row.$pri %]
+    <td>
+        <a href="[% c.uri_for( 'view', row.servico_id,  ) %]">View</a> | 
+        <a href="[% c.uri_for( 'edit', row.servico_id,  ) %]">Edit</a> |
+        <a href="[% c.uri_for( 'destroy', row.servico_id,  ) %]">Delete</a>
+    </td>
+    </tr>
+[% END %]
+</tbody>
+</table>
+[% PROCESS pager.tt %]
+<br/>
+

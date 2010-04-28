@@ -17,7 +17,7 @@ use base "Catalyst::Example::Controller::InstantCRUD";
 
     has '+item_class' => ( default => 'Papei' );
 
-    has_field 'descricao' => ( type => 'TextArea', required => 1, );
+    has_field 'descricao' => ( type => 'Text', required => 1, );
     has_field 'data_inicio' => ( type => 'Date' );
     has_field 'data_fim' => ( type => 'Date' );
     has_field 'submit' => ( widget => 'submit' )

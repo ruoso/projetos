@@ -123,7 +123,7 @@
     [% FOR val = item.alocacoes %]
      <DT>[% val.pessoa.nome %]</DT>
      <DD>[% val.papel.descricao %] ([% val.data_inicio.dmy %] a [% val.data_fim.dmy %])
-         (<A HREF="[% c.uri_for_action('/alocaco/edit', val.projeto_id, val.pessoa_id, val.data_inicio, val.data_fim) %]">Editar</A> | <A HREF="[% c.uri_for_action('/alocaco/destroy', val.projeto_id, val.pessoa_id, val.data_inicio, val.data_fim) %]">Remover</A>)
+         (<A HREF="[% c.uri_for_action('/alocaco/edit', val.alocacao_id ) %]">Editar</A> | <A HREF="[% c.uri_for_action('/alocaco/destroy', val.alocacao_id ) %]">Remover</A>)
      </DD>
     [% END %]
    </DL>

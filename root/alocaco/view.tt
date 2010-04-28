@@ -48,7 +48,7 @@
 
 </table>
 <hr />
-<a href="[% c.uri_for( 'edit', item.projeto_id, item.pessoa_id, item.data_inicio, item.data_fim,  ) %]">Edit</a>
+<a href="[% c.uri_for( 'edit', item.alocacao_id,  ) %]">Edit</a>
 <hr />
 <a href="[% c.uri_for( 'list' ) %]">List</a>
 

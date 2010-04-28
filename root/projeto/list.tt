@@ -1,7 +1,9 @@
+<a href="[% c.uri_for( 'edit' ) %]">Add</a>
 
 <table>
+<thead>
 <tr>
-<th> [% order_by_column_link('coordenacao', 'Coordenacao') %] </th>
+<th> Coordenacao </th>
 
 <th> [% order_by_column_link('nome', 'Nome') %] </th>
 
@@ -11,12 +13,10 @@
 
 <th> [% order_by_column_link('data_fim', 'Data Fim') %] </th>
 
-<th> [% order_by_column_link('valor', 'Valor') %] </th>
-
-<th> [% order_by_column_link('status', 'Status') %] </th>
-
-
+<th> Ações </th>
 </tr>
+</thead>
+<tbody>
 [% WHILE (row = result.next) %]
     <tr>
     
@@ -50,17 +50,7 @@
     
     </td>
     
-    <td>
     
-    [%  row.valor %]
-    
-    </td>
-    
-    <td>
-    
-    [%  row.status %]
-    
-    </td>
      
     [% SET id = row.$pri %]
     <td>
@@ -72,8 +62,9 @@
     </td>
     </tr>
 [% END %]
+</tbody>
 </table>
 [% PROCESS pager.tt %]
 <br/>
-<a href="[% c.uri_for( 'edit' ) %]">Add</a>
+
 
