@@ -17,7 +17,7 @@ sub translate {
 
 sub mm_servico {
     my ($self, $servico) = @_;
-    return
+    my $data =
       { id => $self->get_id,
         title => $servico->nome,
         children =>
@@ -49,6 +49,9 @@ sub mm_servico {
           }
         }
       };
+    delete $data->{children} unless
+      @{$data->{children}{topics}{topic}};
+    return $data;
 }
 
 1;
