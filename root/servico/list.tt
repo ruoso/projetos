@@ -46,6 +46,7 @@
     [% SET id = row.$pri %]
     <td>
         <a href="[% c.uri_for( 'view', row.servico_id,  ) %]">View</a> | 
+        <a href="[% c.uri_for( 'xmind', row.servico_id,  ) %]">XMind</a> | 
         <a href="[% c.uri_for( 'edit', row.servico_id,  ) %]">Edit</a> |
         <a href="[% c.uri_for( 'destroy', row.servico_id,  ) %]">Delete</a>
     </td>

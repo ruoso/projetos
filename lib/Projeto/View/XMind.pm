@@ -64,6 +64,31 @@ sub get_id {
     return lc Digest::SHA1::sha1_base64(++$id);
 }
 
+sub plain_children {
+    my ($self, $title, $items) = @_;
+    return
+      { id => $self->get_id,
+        title => $title,
+        branch => 'folded',
+        children => 
+        { topics =>
+          { type => 'attached',
+            topic => $items }
+        } }
+}
+
+sub plain_map {
+    my $self = shift;
+    my $name = shift;
+    my $closure = shift;
+    my @var = map &$closure, @_;
+    if (@var) {
+        return $self->plain_children($name, \@var);
+    } else {
+        return ();
+    }
+}
+
 
 1;
 

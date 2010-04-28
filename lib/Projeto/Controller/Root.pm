@@ -40,9 +40,9 @@ sub default : Private {
 
 sub xmind : Local :Args(0) {
     my ($self, $c) = @_;
-    my $projetos = $c->model('DBICSchemamodel::Projeto')->search;
-    #$c->forward($c->view('XMind::Projeto', $projeto));
-    $c->view('XMind::Geral', $projetos)->process($c);
+    my $coords = $c->model('DBICSchemamodel::Coordenaco')->search;
+    #$c->forward($c->view('XMind::Geral', $coords));
+    $c->view('XMind::Geral', $coords)->process($c);
 }
 
 =head2 index

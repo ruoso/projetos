@@ -2,23 +2,24 @@ package Projeto::View::XMind::Geral;
 
 use strict;
 use warnings;
-use base 'Projeto::View::XMind::Projeto';
+use base qw(Projeto::View::XMind::Projeto
+            Projeto::View::XMind::Servico);
 
 sub translate {
-    my ($self, $projetos_rs) = @_;
+    my ($self, $coordenacoes_rs) = @_;
     my %direcoes;
-    while (my $projeto = $projetos_rs->next) {
-        my $coord = $projeto->coordenacao;
+    while (my $coord = $coordenacoes_rs->next) {
         my $dire = $coord->direcao;
         $direcoes{$dire} ||= {};
-        $direcoes{$dire}{$coord->nome} ||= [];
-        push @{$direcoes{$dire}{$coord->nome}}, $self->mm_projeto($projeto);
+        $direcoes{$dire}{$coord->nome} =
+          [( map { $self->mm_projeto($_) } $coord->projetos->all ),
+           ( map { $self->mm_servico($_) } $coord->servicos->all )];
     }
 
     return
       { version => '2.0',
         sheet =>
-        { title => 'Projetos CTI',
+        { title => 'CTI',
           topic =>
           { title => 'Coordenadoria de TI',
             children =>
@@ -37,6 +38,7 @@ sub translate {
 
 sub mm_direcao {
     my ($self, $direcao, $coordenacoes) = @_;
+    return unless keys %$coordenacoes;
     return
       { title => $direcao,
         children =>
@@ -52,14 +54,15 @@ sub mm_direcao {
 }
 
 sub mm_coordenacao {
-    my ($self, $coord, $projetos) = @_;
+    my ($self, $coord, $proj_serv) = @_;
+    return unless @$proj_serv;
     return
       { branch => 'folded',
         title => $coord,
         children =>
         { topics =>
           { type => 'attached',
-            topic => $projetos
+            topic => $proj_serv
           }
         }
       };
