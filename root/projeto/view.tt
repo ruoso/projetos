@@ -51,7 +51,7 @@
 <DD>
     
    <UL>
-    [% FOR val = item.statuses %]
+    [% FOR val = item.statuses({},{ order_by => 'data DESC'}) %]
      <LI>[% val.data.dmy %]: [% val.descricao %]
          (<A HREF="[% c.uri_for_action('/status/edit', val.status_id) %]">Editar</A> | <A HREF="[% c.uri_for_action('/status/destroy', val.status_id) %]">Remover</A>)
      </LI>

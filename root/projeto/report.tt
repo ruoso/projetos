@@ -43,7 +43,7 @@
 <DD>
     
    <UL>
-    [% FOR val = item.statuses %]
+    [% FOR val = item.statuses({},{ order_by => 'data DESC' }) %]
      <LI>[% val.data.dmy %]: [% val.descricao %]
      </LI>
     [% END %]
