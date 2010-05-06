@@ -702,12 +702,10 @@ body.relatorio thead th { background-color: white; color: black; }
 
 #lista_de_projetos li {
     list-style-image: url(/static/img/delete.png);
-    list-style-position: inside;
 }
 
 #lista_de_projetos li.closed {
     list-style-image: url(/static/img/add.png);
-    list-style-position: inside;
 }
 
 #lista_de_projetos li span {
@@ -724,12 +722,10 @@ body.relatorio thead th { background-color: white; color: black; }
 
 #lista_de_projetos li ul li {
     list-style-image: url(/static/img/delete.png);
-    list-style-position: inside;
 }
 
 #lista_de_projetos li ul li.closed {
     list-style-image: url(/static/img/add.png);
-    list-style-position: inside;
 }
 
 #lista_de_projetos li ul li table {
