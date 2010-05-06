@@ -12,13 +12,13 @@
 [% WHILE (row = rs.next) -%]
 [% IF counter > 0 -%]
  [% IF last_coorden != row.coordenacao.nome -%]
-  </TBODY>
-  </TABLE>
-  </LI>
+      </TBODY>
+      </TABLE>
+     </LI>
  [% END -%]
  [% IF last_direcao != row.coordenacao.direcao -%]
+    </UL>
   </LI>
-  </UL>
  [% END -%]
 [% END -%]
 [% IF last_direcao != row.coordenacao.direcao -%]
@@ -54,11 +54,13 @@
 [% SET counter = counter + 1 -%]
 [% END -%]
 [% IF counter > 0 -%]
-          </TBODY>
-        </TABLE>
-       </UL>
-      </UL>
+      </TBODY>
+      </TABLE>
+     </LI>
+    </UL>
+  </LI>
 [% END -%]
+</UL>
 
 <SCRIPT language="javascript">
   $('#lista_de_projetos li ul li').each(function (i) { $(this).addClass('closed') });
