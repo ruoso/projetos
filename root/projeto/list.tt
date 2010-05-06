@@ -1,70 +1,83 @@
 <a href="[% c.uri_for( 'edit' ) %]">Add</a>
 
-<table>
-<thead>
-<tr>
-<th> Coordenacao </th>
+[% SET rs = c.model('DBICSchemamodel::Projeto').search_rs({},{ prefetch => [ 'coordenacao', 'gerente' ],
+                                                               order_by => [ 'coordenacao.direcao',
+                                                                             'coordenacao.nome',
+                                                                             'me.nome' ] }) %]
 
-<th> [% order_by_column_link('nome', 'Nome') %] </th>
+[% SET last_direcao = 'NONONONO' %]
+[% SET last_coorden = 'NONONONO' %]
+[% SET counter = 0 %]
+<UL id="lista_de_projetos">
+[% WHILE (row = rs.next) -%]
+[% IF counter > 0 -%]
+ [% IF last_coorden != row.coordenacao.nome -%]
+  </TBODY>
+  </TABLE>
+  </LI>
+ [% END -%]
+ [% IF last_direcao != row.coordenacao.direcao -%]
+  </LI>
+  </UL>
+ [% END -%]
+[% END -%]
+[% IF last_direcao != row.coordenacao.direcao -%]
+  <LI>
+    <SPAN>[% row.coordenacao.direcao %]</SPAN>
+    <UL>
+[% END -%]
 
-<th> [% order_by_column_link('gerente', 'Gerente') %] </th>
+[% IF last_coorden != row.coordenacao.nome -%]
+      <LI>
+        <SPAN>[% row.coordenacao.nome %]</SPAN>
+        <TABLE>
+          <THEAD>
+            <TR>
+              <TH>Nome</TH>
+              <TH WIDTH="20%">Gerente</TH>
+              <TH WIDTH="10%">Data de Início</TH>
+              <TH WIDTH="10%">Data de Fim</TH>
+            </TR>
+          </THEAD>
+          <TBODY>
+[% END -%]
 
-<th> [% order_by_column_link('data_inicio', 'Data Inicio') %] </th>
+           <TR>
+             <TD>[% row.nome %]</TD>
+             <TD>[% row.gerente.nome %]</TD>
+             <TD>[% row.data_inicio.dmy %]</TD>
+             <TD>[% row.data_fim.dmy %]</TD>
+           </TR>
 
-<th> [% order_by_column_link('data_fim', 'Data Fim') %] </th>
+[% SET last_direcao = row.coordenacao.direcao -%]
+[% SET last_coorden = row.coordenacao.nome -%]
+[% SET counter = counter + 1 -%]
+[% END -%]
+[% IF counter > 0 -%]
+          </TBODY>
+        </TABLE>
+       </UL>
+      </UL>
+[% END -%]
 
-<th> Ações </th>
-</tr>
-</thead>
-<tbody>
-[% WHILE (row = result.next) %]
-    <tr>
-    
-    <td>
-    
-    [%  row.coordenacao.nome %]
-    
-    </td>
+<SCRIPT language="javascript">
+  $('#lista_de_projetos li ul li').each(function (i) { $(this).addClass('closed') });
+  $('#lista_de_projetos li').each(function (i) { $(this).addClass('closed') });
 
-    <td>
-    
-    [%  row.nome %]
-    
-    </td>
-    
-    
-    <td>
-    
-    [%  row.gerente.nome %]
-    
-    </td>
-    <td>
-   
-    [%  row.data_inicio.dmy %]
-    
-    </td>
-    
-    <td>
-    
-    [%  row.data_fim.dmy %]
-    
-    </td>
-    
-    
-     
-    [% SET id = row.$pri %]
-    <td>
-        <a href="[% c.uri_for( 'view', row.projeto_id,  ) %]">View</a> | 
-        <a href="[% c.uri_for( 'xmind', row.projeto_id,  ) %]">XMind</a> | 
-        <a href="[% c.uri_for( 'report', row.projeto_id,  ) %]">Report</a> |
-        <a href="[% c.uri_for( 'edit', row.projeto_id,  ) %]">Edit</a> |
-        <a href="[% c.uri_for( 'destroy', row.projeto_id,  ) %]">Delete</a>
-    </td>
-    </tr>
-[% END %]
-</tbody>
-</table>
-[% PROCESS pager.tt %]
+  var toggle_closed_class = function () {
+     if ($(this).hasClass('closed')) {
+       $(this).removeClass('closed');
+     } else {
+       $(this).addClass('closed');
+     }
+     return false;
+  }
+
+  $('#lista_de_projetos li ul li').click(toggle_closed_class);
+  $('#lista_de_projetos li').click(toggle_closed_class);
+
+</SCRIPT>
+
 <br/>
 
 

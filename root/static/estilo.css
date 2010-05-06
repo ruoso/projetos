@@ -699,3 +699,44 @@ body.relatorio thead th { background-color: white; color: black; }
 .counter {
     float: right;
 }
+
+#lista_de_projetos li {
+    list-style-image: url(/static/img/delete.png);
+    list-style-position: inside;
+}
+
+#lista_de_projetos li.closed {
+    list-style-image: url(/static/img/add.png);
+    list-style-position: inside;
+}
+
+#lista_de_projetos li span {
+    padding: 0.5em;
+}
+
+#lista_de_projetos li ul {
+    display: block;
+}
+
+#lista_de_projetos li.closed ul {
+    display: none;
+}
+
+#lista_de_projetos li ul li {
+    list-style-image: url(/static/img/delete.png);
+    list-style-position: inside;
+}
+
+#lista_de_projetos li ul li.closed {
+    list-style-image: url(/static/img/add.png);
+    list-style-position: inside;
+}
+
+#lista_de_projetos li ul li table {
+    display: block;
+}
+
+#lista_de_projetos li ul li.closed table {
+    display: none;
+}
+

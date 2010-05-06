@@ -23,6 +23,8 @@
         <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
         <title>Portfólio de Projetos</title>
         <link href='[% c.uri_for('/static/estilo.css') %]' rel='stylesheet' type='text/css' />
+        <script src='[% c.uri_for('/static/js/plugins/jquery.js') %]' language='javascript'>
+        </script>
     </head>
 
     <body>
