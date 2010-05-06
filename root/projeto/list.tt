@@ -43,7 +43,7 @@
 [% END -%]
 
            <TR>
-             <TD>[% row.nome %]</TD>
+             <TD><A HREF="[% c.uri_for_action('/projeto/view', row.projeto_id ) %]">[% row.nome %]</A></TD>
              <TD>[% row.gerente.nome %]</TD>
              <TD>[% row.data_inicio.dmy %]</TD>
              <TD>[% row.data_fim.dmy %]</TD>
@@ -65,16 +65,17 @@
   $('#lista_de_projetos li').each(function (i) { $(this).addClass('closed') });
 
   var toggle_closed_class = function () {
-     if ($(this).hasClass('closed')) {
-       $(this).removeClass('closed');
+     var el = $(this).parent();
+     if (el.hasClass('closed')) {
+       el.removeClass('closed');
      } else {
-       $(this).addClass('closed');
+       el.addClass('closed');
      }
      return false;
   }
 
-  $('#lista_de_projetos li ul li').click(toggle_closed_class);
-  $('#lista_de_projetos li').click(toggle_closed_class);
+  $('#lista_de_projetos li ul li span').click(toggle_closed_class);
+  $('#lista_de_projetos li span').click(toggle_closed_class);
 
 </SCRIPT>
 
