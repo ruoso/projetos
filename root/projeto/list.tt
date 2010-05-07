@@ -37,6 +37,7 @@
               <TH WIDTH="20%">Gerente</TH>
               <TH WIDTH="10%">Data de Início</TH>
               <TH WIDTH="10%">Data de Fim</TH>
+              <TH WIDTH="10%">Ações</TH>
             </TR>
           </THEAD>
           <TBODY>
@@ -47,6 +48,12 @@
              <TD>[% row.gerente.nome %]</TD>
              <TD>[% row.data_inicio.dmy %]</TD>
              <TD>[% row.data_fim.dmy %]</TD>
+             <TD>
+               <A HREF="[% c.uri_for_action('/projeto/view', row.projeto_id ) %]">Ver</A>
+               <A HREF="[% c.uri_for_action('/projeto/edit', row.projeto_id ) %]">Editar</A>
+               <A HREF="[% c.uri_for_action('/projeto/report', row.projeto_id ) %]">Relatório</A>
+               <A HREF="[% c.uri_for_action('/projeto/xmind', row.projeto_id ) %]">XMind</A>
+             </TD>
            </TR>
 
 [% SET last_direcao = row.coordenacao.direcao -%]

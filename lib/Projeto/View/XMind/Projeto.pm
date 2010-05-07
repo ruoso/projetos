@@ -44,8 +44,12 @@ sub mm_projeto {
              $self->plain_map('Restricoes',
                               sub { return { id => $self->get_id, title => $_->tipo_restricao->nome } },
                               $projeto->restricoes),
-             $self->plain_map('Objetivos', sub { return { id => $self->get_id, title => $_->descricao } },
+             $self->plain_map('Objetivos', sub { return $self->mm_objetivo($_) },
                               $projeto->objetivos),
+             $self->plain_map('Status', sub { return { id => $self->get_id, title => join ' - ', $_->data->dmy, $_->descricao } },
+                              $projeto->statuses({},{ order_by => 'data' })),
+             $self->plain_map('Lições Aprendidas', sub { return { id => $self->get_id, title => join ' - ', $_->data->dmy, $_->descricao } },
+                              $projeto->licoes_aprendidas({},{ order_by => 'data' })),
              $projeto->data_inicio ?
              { id => $self->get_id, title => 'Data de Início: '.$projeto->data_inicio->dmy } : (),
              $projeto->data_fim ?
@@ -62,6 +66,56 @@ sub mm_projeto {
     delete $data->{children} unless
       @{$data->{children}{topics}{topic}};
     return $data;
+}
+
+sub mm_objetivo {
+    my ($self, $objetivo) = @_;
+    my $r =
+      {
+       id => $self->get_id,
+       title => $objetivo->descricao,
+       children =>
+       { topics =>
+         { type => 'attached',
+           topic =>
+           [
+            map { $self->mm_meta($_) } $objetivo->metas
+           ]
+         }
+       }
+      };
+    delete $r->{children} unless @{$r->{children}{topics}{topic}};
+    return $r;
+}
+
+sub mm_meta {
+    my ($self, $meta) = @_;
+    my $r =
+      {
+       id => $self->get_id,
+       title => (join ' - ', ($meta->data_fim->dmy?$meta->data_fim->dmy:()), $meta->descricao),
+       children =>
+       { topics =>
+         { type => 'attached',
+           topic =>
+           [
+            map { $self->mm_medicao($_) } $meta->medicoes
+           ]
+         }
+       }
+      };
+    delete $r->{children} unless $r->{children}{topics}{topic} &&
+      @{$r->{children}{topics}{topic}};
+    return $r;
+}
+
+sub mm_medicao {
+    my ($self, $medicao) = @_;
+    return
+      {
+       id => $self->get_id,
+       title => (join ' - ', $medicao->data_medicao->dmy, $medicao->descricao),
+      };
 }
 
 1;
