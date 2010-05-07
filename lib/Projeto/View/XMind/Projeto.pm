@@ -93,7 +93,7 @@ sub mm_meta {
     my $r =
       {
        id => $self->get_id,
-       title => (join ' - ', ($meta->data_fim->dmy?$meta->data_fim->dmy:()), $meta->descricao),
+       title => (join ' - ', ($meta->data_fim?$meta->data_fim->dmy:()), $meta->descricao),
        children =>
        { topics =>
          { type => 'attached',
@@ -114,7 +114,7 @@ sub mm_medicao {
     return
       {
        id => $self->get_id,
-       title => (join ' - ', $medicao->data_medicao->dmy, $medicao->descricao),
+       title => (join ' - ', ($medicao->data_medicao?$medicao->data_medicao->dmy:()), $medicao->descricao),
       };
 }
 
