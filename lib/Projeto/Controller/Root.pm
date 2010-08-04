@@ -1,5 +1,4 @@
 package Projeto::Controller::Root;
-
 use strict;
 use warnings;
 use base 'Catalyst::Controller';

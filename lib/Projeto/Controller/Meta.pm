@@ -1,9 +1,9 @@
+package Projeto::Controller::Meta;
 use strict;
 use warnings;
+use base "Catalyst::Controller";
 
-package Projeto::Controller::Meta;
 
-use base "Catalyst::Example::Controller::InstantCRUD";
 
 sub end :Private {
     my ($self, $c) = @_;

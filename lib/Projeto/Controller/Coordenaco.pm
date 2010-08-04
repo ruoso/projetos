@@ -1,9 +1,7 @@
+package Projeto::Controller::Coordenaco;
+use base "Catalyst::Controller";
 use strict;
 use warnings;
-
-package Projeto::Controller::Coordenaco;
-
-use base "Catalyst::Example::Controller::InstantCRUD";
 
 
 {

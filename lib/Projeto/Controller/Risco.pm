@@ -1,9 +1,7 @@
+package Projeto::Controller::Risco;
 use strict;
 use warnings;
-
-package Projeto::Controller::Risco;
-
-use base "Catalyst::Example::Controller::InstantCRUD";
+use base "Catalyst::Controller";
 
 sub end :Private {
     my ($self, $c) = @_;

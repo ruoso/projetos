@@ -1,9 +1,7 @@
+package Projeto::Controller::Medico;
+use base "Catalyst::Controller";
 use strict;
 use warnings;
-
-package Projeto::Controller::Medico;
-
-use base "Catalyst::Example::Controller::InstantCRUD";
 
 sub end :Private {
     my ($self, $c) = @_;

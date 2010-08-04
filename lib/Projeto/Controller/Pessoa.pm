@@ -1,7 +1,7 @@
 package Projeto::Controller::Pessoa;
 use strict;
 use warnings;
-use base "Catalyst::Example::Controller::InstantCRUD";
+use base "Catalyst::Controller";
 
 
 {

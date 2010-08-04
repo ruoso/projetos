@@ -1,9 +1,7 @@
+package Projeto::Controller::TiposObjetivo;
 use strict;
 use warnings;
-
-package Projeto::Controller::TiposObjetivo;
-
-use base "Catalyst::Example::Controller::InstantCRUD";
+use base "Catalyst::Controller";
 
 
 {

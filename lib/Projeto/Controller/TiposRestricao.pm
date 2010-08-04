@@ -1,9 +1,7 @@
+package Projeto::Controller::TiposRestricao;
 use strict;
 use warnings;
-
-package Projeto::Controller::TiposRestricao;
-
-use base "Catalyst::Example::Controller::InstantCRUD";
+use base "Catalyst::Controller";
 
 
 {

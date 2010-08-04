@@ -1,9 +1,7 @@
+package Projeto::Controller::Alocaco;
 use strict;
 use warnings;
-
-package Projeto::Controller::Alocaco;
-
-use base "Catalyst::Example::Controller::InstantCRUD";
+use base "Catalyst::Controller";
 use utf8;
 
 sub edit :Local {

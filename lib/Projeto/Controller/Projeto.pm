@@ -1,9 +1,7 @@
+package Projeto::Controller::Projeto;
 use strict;
 use warnings;
-
-package Projeto::Controller::Projeto;
-
-use base "Catalyst::Example::Controller::InstantCRUD";
+use base "Catalyst::Controller";
 
 sub report :Local :Args(1) {
     my ($self, $c, $id) = @_;

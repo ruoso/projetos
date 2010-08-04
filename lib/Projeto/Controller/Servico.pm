@@ -1,9 +1,7 @@
+package Projeto::Controller::Servico;
 use strict;
 use warnings;
-
-package Projeto::Controller::Servico;
-
-use base "Catalyst::Example::Controller::InstantCRUD";
+use base "Catalyst::Controller";
 
 sub xmind :Local :Args(1) {
     my ($self, $c, $id) = @_;

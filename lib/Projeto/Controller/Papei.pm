@@ -1,9 +1,7 @@
+package Projeto::Controller::Papei;
 use strict;
 use warnings;
-
-package Projeto::Controller::Papei;
-
-use base "Catalyst::Example::Controller::InstantCRUD";
+use base "Catalyst::Controller";
 
 
 {

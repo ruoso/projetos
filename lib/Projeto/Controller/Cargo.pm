@@ -1,9 +1,7 @@
+package Projeto::Controller::Cargo;
 use strict;
 use warnings;
-
-package Projeto::Controller::Cargo;
-
-use base "Catalyst::Example::Controller::InstantCRUD";
+use base "Catalyst::Controller";
 
 
 {
