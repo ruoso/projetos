@@ -1,4 +1,5 @@
 package Projeto::Controller::Risco;
+use Projeto::Form::Risco;
 use strict;
 use warnings;
 use base "Catalyst::Controller";

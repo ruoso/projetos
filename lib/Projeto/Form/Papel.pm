@@ -10,7 +10,7 @@ has '+item_class' => ( default => 'Papei' );
 has_field 'descricao' => ( type => 'Text', required => 1, );
 has_field 'data_inicio' => ( type => 'Date' );
 has_field 'data_fim' => ( type => 'Date' );
-has_field 'submit' => ( type => 'Submit', value => 'Enviar' )
+has_field 'submit' => ( type => 'Submit', value => 'Enviar' );
 
 1;
 

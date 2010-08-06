@@ -1,4 +1,5 @@
 package Projeto::Controller::LicoesAprendida;
+use Projeto::Form::LicaoAprendida;
 use strict;
 use warnings;
 use base "Catalyst::Controller";

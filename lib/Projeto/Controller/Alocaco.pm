@@ -1,4 +1,5 @@
 package Projeto::Controller::Alocaco;
+use Projeto::Form::Alocacao;
 use strict;
 use warnings;
 use base "Catalyst::Controller";

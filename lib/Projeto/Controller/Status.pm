@@ -1,4 +1,5 @@
 package Projeto::Controller::Status;
+use Projeto::Form::Status;
 use strict;
 use warnings;
 use base "Catalyst::Controller";

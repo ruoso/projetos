@@ -1,4 +1,5 @@
 package Projeto::Controller::Objetivo;
+use Projeto::Form::Objetivo;
 use strict;
 use warnings;
 use base "Catalyst::Controller";

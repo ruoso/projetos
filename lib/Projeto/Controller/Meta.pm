@@ -1,4 +1,5 @@
 package Projeto::Controller::Meta;
+use Projeto::Form::Meta;
 use strict;
 use warnings;
 use base "Catalyst::Controller";

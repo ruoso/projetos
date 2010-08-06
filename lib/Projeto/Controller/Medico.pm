@@ -1,4 +1,5 @@
 package Projeto::Controller::Medico;
+use Projeto::Form::Medicao;
 use base "Catalyst::Controller";
 use strict;
 use warnings;

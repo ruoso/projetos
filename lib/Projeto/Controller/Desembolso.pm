@@ -1,4 +1,5 @@
 package Projeto::Controller::Desembolso;
+use Projeto::Form::Desembolso;
 use strict;
 use warnings;
 use base "Catalyst::Controller";

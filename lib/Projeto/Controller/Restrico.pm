@@ -1,4 +1,5 @@
 package Projeto::Controller::Restrico;
+use Projeto::Form::Restricao;
 use strict;
 use warnings;
 use base "Catalyst::Controller";
