@@ -1,16 +1,16 @@
 
 <DL>
 <DT>Nome:</DT>
-<DD>[%  item.nome %]</DD>
+<DD>[%  servico.nome %]</DD>
 <DT>Coordenação:</DT>
-<DD>[%  item.coordenacao.nome %]</DD>
+<DD>[%  servico.coordenacao.nome %]</DD>
 <DT>Gerente:</DT>
-<DD>[%  item.gerente.nome %]</DD>
+<DD>[%  servico.gerente.nome %]</DD>
 <DT>Objetivos, metas e medições:</DT>
 <DD>
    <UL>
     [% FOREACH val IN
-       item.objetivos({},
+       servico.objetivos({},
                       { prefetch => { metas => 'medicoes' },
                         order_by => [ 'me.objetivo_id', 'metas.data_fim', 'medicoes.data_medicao' ] }) %]
      <LI>[% val.descricao %]
@@ -43,7 +43,7 @@
 <DD>
     
    <UL>
-    [% FOR val = item.statuses %]
+    [% FOR val = servico.statuses %]
      <LI>[% val.data.dmy %]: [% val.descricao %]
      </LI>
     [% END %]
@@ -55,7 +55,7 @@
 <DD>
     
    <UL>
-    [% FOR val = item.licoes_aprendidas %]
+    [% FOR val = servico.licoes_aprendidas %]
      <LI>[% val.data.dmy %]: [% val.descricao %]
      </LI>
     [% END %]
@@ -82,7 +82,7 @@
      </TR>
     </THEAD>
     <TBODY>
-    [% FOR val = item.desembolsos %]
+    [% FOR val = servico.desembolsos %]
      <TR>
       <TD ROWSPAN="2">[% val.data_prevista.dmy %]</TD>
       <TD ROWSPAN="2">[% val.valor %]</TD>
@@ -105,7 +105,7 @@
 <DT>Alocacoes:</DT>
 <DD>
    <DL>
-    [% FOR val = item.alocacoes %]
+    [% FOR val = servico.alocacoes %]
      <DT>[% val.pessoa.nome %]</DT>
      <DD>[% val.papel.descricao %] ([% val.data_inicio.dmy %] a [% val.data_fim.dmy %])
      </DD>
@@ -116,7 +116,7 @@
 <DT>Riscos:</DT>
 <DD>
    <UL>
-    [% FOR val = item.riscos %]
+    [% FOR val = servico.riscos %]
      <LI>[% val.descricao %]  ([% val.data_inicio.dmy %] a [% val.data_fim.dmy %])
     [% END %]
    </UL>
@@ -127,18 +127,18 @@
 <DD>
 
    <UL>
-    [% FOR val = item.restricoes_rs({},{ order_by => 'me.importancia' }).all %]
+    [% FOR val = servico.restricoes_rs({},{ order_by => 'me.importancia' }).all %]
      <LI>[% val.tipo_restricao.nome %]</LI>
     [% END %]
    </UL>
     
 </DD>
 <DT>Data Inicio:</DT>
-<DD>[%  item.data_inicio.dmy %]</DD>
+<DD>[%  servico.data_inicio.dmy %]</DD>
 <DT>Data Fim:</DT>
-<DD>[%  item.data_fim.dmy %]</DD>
+<DD>[%  servico.data_fim.dmy %]</DD>
 <DT>Valor:</DT>
-<DD>[%  item.valor %]</DD>
+<DD>[%  servico.valor %]</DD>
 
 </DL>
 

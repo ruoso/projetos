@@ -4,7 +4,6 @@ use warnings;
 use base "Catalyst::Controller";
 use Projeto::Form::Projeto;
 
-
 sub base :Chained('/base') :PathPart('projeto') :CaptureArgs(0) {
     my ($self, $c) = @_;
 }

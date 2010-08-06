@@ -1,0 +1,4 @@
+[% form.render %]
+<hr>
+<a href="[% c.uri_for_action( '/servico/ver', [ servico.servico_id ] ) %]">Ver</a>
+<a href="[% c.uri_for_action( '/servico/index' ) %]">Voltar para a listagem</a>

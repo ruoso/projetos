@@ -2,39 +2,52 @@ package Projeto::Controller::Servico;
 use strict;
 use warnings;
 use base "Catalyst::Controller";
+use Projeto::Form::Servico;
 
-sub xmind :Local :Args(1) {
-    my ($self, $c, $id) = @_;
-    my $servico = $c->model('DBICSchemamodel::Servico')->find
-      ({ servico_id => $id });
-    #$c->forward($c->view('XMind::Servico', $servico));
-    $c->view('XMind::Servico', $servico)->process($c);
+sub base :Chained('/base') :PathPart('servico') :CaptureArgs(0) {
+    my ($self, $c) = @_;
 }
 
+sub index :Chained(base) :PathPart('') :Args(0) {}
 
-{
-    package Projeto::Controller::Servico::ServicoForm;
-    use HTML::FormHandler::Moose;
-    extends 'HTML::FormHandler::Model::DBIC';
-    with 'HTML::FormHandler::Render::Simple';
+sub novo :Chained(base) :PathPart :Args(0) {
+    my ($self, $c, $id) = @_;
+    $c->stash->{form} = Projeto::Form::Servico->new(schema => $c->model('DB'));
+    $c->stash->{form}->process( schema => $c->model('DB')->schema,
+                                params => $c->req->params );
+}
 
-    use DateTime;
+sub dados :Chained(base) :PathPart('') :CaptureArgs(1) {
+    my ($self, $c, $id) = @_;
 
+    $id =~ /^\d+$/
+      or $c->detach('/default');
 
-    has '+item_class' => ( default => 'Servico' );
+    $c->stash->{servico} =
+      $c->model('DB::Servico')->find({ servico_id => $id })
+        or $c->detach('/default');
+}
 
-    has_field 'coordenacao' => ( type => 'Select', );
-    has_field 'nome' => ( type => 'Text', required => 1, );
-    has_field 'data_inicio' => ( type => 'Date' );
-    has_field 'data_fim' => ( type => 'Date' );
-    has_field 'submit' => ( widget => 'submit' );
+sub ver :Chained(dados) :PathPart('') :Args(0) {
+    my ($self, $c, $id) = @_;
+}
 
-    sub options_coordenacao {
-        my $self = shift;
-        return [ map { $_->coordenacao_id => $_->nome }
-                 $self->schema->resultset('Coordenaco')->all ];
-    }
+sub editar :Chained(dados) :Args(0) {
+    my ($self, $c, $id) = @_;
+    $c->stash->{form} = Projeto::Form::Servico->new(schema => $c->model('DB'));
+    $c->stash->{form}->process( item => $c->stash->{servico},
+                                params => $c->req->params );
+}
 
+sub remover :Chained(dados) :Args(0) {
+}
+
+sub report :Chained(dados) :Args(0) {
+}
+
+sub xmind :Chained(dados) :Args(0) {
+    my ($self, $c) = @_;
+    $c->view('XMind::Servico', $c->stash->{servico})->process($c);
 }
 
 

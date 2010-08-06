@@ -1,0 +1,93 @@
+<a href="[% c.uri_for_action( '/servico/novo' ) %]">Criar novo</a>
+
+[% SET rs = c.model('DB::Servico').search_rs({},{ prefetch => [ 'coordenacao' ],
+                                                  order_by => [ 'coordenacao.direcao',
+                                                                'coordenacao.nome',
+                                                                'me.nome' ] }) %]
+
+[% SET last_direcao = 'NONONONO' %]
+[% SET last_coorden = 'NONONONO' %]
+[% SET counter = 0 %]
+<UL id="lista_de_projetos">
+[% WHILE (row = rs.next) -%]
+[% IF counter > 0 -%]
+ [% IF last_coorden != row.coordenacao.nome -%]
+      </TBODY>
+      </TABLE>
+     </LI>
+ [% END -%]
+ [% IF last_direcao != row.coordenacao.direcao -%]
+    </UL>
+  </LI>
+ [% END -%]
+[% END -%]
+[% IF last_direcao != row.coordenacao.direcao -%]
+  <LI>
+    <SPAN>[% row.coordenacao.direcao %]</SPAN>
+    <UL>
+[% END -%]
+
+[% IF last_coorden != row.coordenacao.nome -%]
+      <LI>
+        <SPAN>[% row.coordenacao.nome %]</SPAN>
+        <TABLE>
+          <THEAD>
+            <TR>
+              <TH>Nome</TH>
+              <TH WIDTH="20%">Gerente</TH>
+              <TH WIDTH="10%">Data de Início</TH>
+              <TH WIDTH="10%">Data de Fim</TH>
+              <TH WIDTH="10%">Ações</TH>
+            </TR>
+          </THEAD>
+          <TBODY>
+[% END -%]
+
+           <TR>
+             <TD><A HREF="[% c.uri_for_action('/servico/ver', [ row.servico_id ] ) %]">[% row.nome %]</A></TD>
+             <TD>[% row.gerente.nome %]</TD>
+             <TD>[% row.data_inicio.dmy %]</TD>
+             <TD>[% row.data_fim.dmy %]</TD>
+             <TD>
+               <A HREF="[% c.uri_for_action('/servico/ver', [ row.servico_id ] ) %]">Ver</A>
+               <A HREF="[% c.uri_for_action('/servico/editar', [ row.servico_id ] ) %]">Editar</A>
+               <A HREF="[% c.uri_for_action('/servico/report', [ row.servico_id ] ) %]">Relatório</A>
+               <A HREF="[% c.uri_for_action('/servico/xmind', [ row.servico_id ] ) %]">XMind</A>
+             </TD>
+           </TR>
+
+[% SET last_direcao = row.coordenacao.direcao -%]
+[% SET last_coorden = row.coordenacao.nome -%]
+[% SET counter = counter + 1 -%]
+[% END -%]
+[% IF counter > 0 -%]
+      </TBODY>
+      </TABLE>
+     </LI>
+    </UL>
+  </LI>
+[% END -%]
+</UL>
+
+<SCRIPT language="javascript">
+  $('#lista_de_projetos li ul li').each(function (i) { $(this).addClass('closed') });
+  $('#lista_de_projetos li').each(function (i) { $(this).addClass('closed') });
+
+  var toggle_closed_class = function () {
+     var el = $(this).parent();
+     if (el.hasClass('closed')) {
+       el.removeClass('closed');
+     } else {
+       el.addClass('closed');
+     }
+     return false;
+  }
+
+  $('#lista_de_projetos li ul li span').click(toggle_closed_class);
+  $('#lista_de_projetos li span').click(toggle_closed_class);
+
+</SCRIPT>
+
+<br/>
+
+
