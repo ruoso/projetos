@@ -11,7 +11,7 @@ has_field 'coordenacao' => ( type => 'Select', );
 has_field 'nome' => ( type => 'Text', required => 1, );
 has_field 'data_inicio' => ( type => 'Date' );
 has_field 'data_fim' => ( type => 'Date' );
-has_field 'submit' => ( type => 'Submit' );
+has_field 'submit' => ( type => 'Submit', value => 'Enviar' );
 
 sub options_coordenacao {
     my $self = shift;
