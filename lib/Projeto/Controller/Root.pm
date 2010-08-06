@@ -16,7 +16,7 @@ sub default :Chained(base) :PathPart('') :Args {
 
 sub xmind :Chained(base) :Args(0) {
     my ($self, $c) = @_;
-    my $coords = $c->model('DBICSchemamodel::Coordenaco')->search;
+    my $coords = $c->model('DB::Coordenaco')->search;
     #$c->forward($c->view('XMind::Geral', $coords));
     $c->view('XMind::Geral', $coords)->process($c);
 }

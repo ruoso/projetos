@@ -43,6 +43,11 @@ sub remover :Chained(dados) :Args(0) {
     my ($self, $c, $id) = @_;
 }
 
+sub xmind :Chained(dados) :Args(0) {
+    my ($self, $c) = @_;
+    $c->view('XMind::Coordenacao', $c->stash->{coordenacao})->process($c);
+
+}
 
 1;
 

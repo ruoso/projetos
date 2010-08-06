@@ -1,9 +1,7 @@
 package Projeto::View::XMind::Geral;
-
 use strict;
 use warnings;
-use base qw(Projeto::View::XMind::Projeto
-            Projeto::View::XMind::Servico);
+use base 'Projeto::View::XMind::Coordenacao';
 
 sub translate {
     my ($self, $coordenacoes_rs) = @_;
@@ -48,21 +46,6 @@ sub mm_direcao {
             [
              map { $self->mm_coordenacao($_, $coordenacoes->{$_}) } keys %$coordenacoes
             ]
-          }
-        }
-      };
-}
-
-sub mm_coordenacao {
-    my ($self, $coord, $proj_serv) = @_;
-    return unless @$proj_serv;
-    return
-      { branch => 'folded',
-        title => $coord,
-        children =>
-        { topics =>
-          { type => 'attached',
-            topic => $proj_serv
           }
         }
       };

@@ -26,9 +26,10 @@
     <td>
     [%  row.data_fim %]
     </td>
-    <td><a href="[% c.uri_for_action( '/coordenacao/ver', [ row.coordenacao_id ], ) %]">Ver</a></td>
-    <td><a href="[% c.uri_for_action( '/coordenacao/editar',[ row.coordenacao_id ], ) %]">Editar</a></td>
-    <td><a href="[% c.uri_for_action( '/coordenacao/remover', [ row.coordenacao_id ], ) %]">Remover</a></td>
+    <td><a href="[% c.uri_for_action( '/coordenacao/ver', [ row.coordenacao_id ], ) %]">Ver</a>
+    <a href="[% c.uri_for_action( '/coordenacao/editar',[ row.coordenacao_id ], ) %]">Editar</a>
+    <a href="[% c.uri_for_action( '/coordenacao/remover', [ row.coordenacao_id ], ) %]">Remover</a>
+    <a href="[% c.uri_for_action( '/coordenacao/xmind', [ row.coordenacao_id ], ) %]">XMind</a></td>
     </tr>
 [% END %]
 </tbody>
