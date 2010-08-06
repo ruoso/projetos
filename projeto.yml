@@ -9,9 +9,10 @@ InstantCRUD:
     schema_name: DBSchema
     maxrows: 10
 
-Model::DBICSchemamodel:
+Model::DB:
     connect_info:
         dsn: "dbi:Pg:dbname=db_projetos;host=127.0.0.1"
         user: fila
         password: senha
+        pg_enable_utf8: 1
 

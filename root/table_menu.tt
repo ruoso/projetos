@@ -1,7 +1,7 @@
 <UL>
  <LI>Informações de Domínio
   <UL>
-   <LI><a href="[% base %]coordenaco">Coordenações<a></LI>
+   <LI><a href="[% base %]coordenacao">Coordenações<a></LI>
    <LI><a href="[% base %]papei">Papéis</a></LI>
    <LI><a href="[% base %]tiposobjetivo">Tipos de Objetivo</a></LI>
    <LI><a href="[% base %]tiposrestricao">Tipos de Restricao</a></LI>

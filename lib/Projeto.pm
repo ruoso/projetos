@@ -8,7 +8,9 @@ use Catalyst::Runtime '5.70';
 
 use Catalyst qw/
 	-Debug
+        Unicode::Encoding
 	ConfigLoader
+        I18N
 	Static::Simple
 /;
 #	Session

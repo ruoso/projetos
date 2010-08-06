@@ -1,0 +1,56 @@
+
+<table name="view">
+
+<tr>
+<td class="view_label"><b>Direcao:</b></td>
+<td>
+    
+    [% coordenacao.direcao %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Projetos:</b></td>
+<td>
+    
+    [% FOR val = coordenacao.projetos %]
+    <a href="[% c.uri_for_action('/projeto/ver', [ val.projeto_id ]) %]">[% val.nome %]</a>
+    [% END %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Data Inicio:</b></td>
+<td>
+    
+    [%  coordenacao.data_inicio %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Data Fim:</b></td>
+<td>
+    
+    [%  coordenacao.data_fim %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Nome:</b></td>
+<td>
+    
+    [%  coordenacao.nome %]
+    
+</td>
+</tr>
+
+</table>
+<hr />
+<a href="[% c.uri_for_action( '/coordenacao/editar', [ coordenacao.coordenacao_id ]  ) %]">Editar</a>
+<a href="[% c.uri_for_action( '/coordenacao/index' ) %]">Voltar para a Listagem</a>
+
+

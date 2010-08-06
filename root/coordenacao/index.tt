@@ -1,0 +1,39 @@
+<a href="[% c.uri_for_action('/coordenacao/novo') %]">Criar novo</a>
+<table>
+
+<thead>
+<tr>
+<th>Direção</th>
+<th>Nome </th>
+<th>Data Inicio</th>
+<th>Data Fim</th>
+</tr>
+</thead>
+
+<tbody>
+[% SET result = c.model('DB::Coordenaco').search_rs() %]
+[% WHILE (row = result.next) %]
+    <tr>
+    <td>
+    [%  row.direcao %]
+    </td>
+    <td>
+    [%  row.nome %]
+    </td>
+    <td>
+    [%  row.data_inicio %]
+    </td>
+    <td>
+    [%  row.data_fim %]
+    </td>
+    <td><a href="[% c.uri_for_action( '/coordenacao/ver', [ row.coordenacao_id ], ) %]">Ver</a></td>
+    <td><a href="[% c.uri_for_action( '/coordenacao/editar',[ row.coordenacao_id ], ) %]">Editar</a></td>
+    <td><a href="[% c.uri_for_action( '/coordenacao/remover', [ row.coordenacao_id ], ) %]">Remover</a></td>
+    </tr>
+[% END %]
+</tbody>
+
+</table>
+<br/>
+
+

@@ -1,9 +1,9 @@
-<a href="[% c.uri_for( 'edit' ) %]">Add</a>
+<a href="[% c.uri_for_action( '/projeto/novo' ) %]">Add</a>
 
-[% SET rs = c.model('DBICSchemamodel::Projeto').search_rs({},{ prefetch => [ 'coordenacao', 'gerente' ],
-                                                               order_by => [ 'coordenacao.direcao',
-                                                                             'coordenacao.nome',
-                                                                             'me.nome' ] }) %]
+[% SET rs = c.model('DB::Projeto').search_rs({},{ prefetch => [ 'coordenacao', 'gerente' ],
+                                                  order_by => [ 'coordenacao.direcao',
+                                                                'coordenacao.nome',
+                                                                'me.nome' ] }) %]
 
 [% SET last_direcao = 'NONONONO' %]
 [% SET last_coorden = 'NONONONO' %]
@@ -44,15 +44,15 @@
 [% END -%]
 
            <TR>
-             <TD><A HREF="[% c.uri_for_action('/projeto/view', row.projeto_id ) %]">[% row.nome %]</A></TD>
+             <TD><A HREF="[% c.uri_for_action('/projeto/ver', [ row.projeto_id ] ) %]">[% row.nome %]</A></TD>
              <TD>[% row.gerente.nome %]</TD>
              <TD>[% row.data_inicio.dmy %]</TD>
              <TD>[% row.data_fim.dmy %]</TD>
              <TD>
-               <A HREF="[% c.uri_for_action('/projeto/view', row.projeto_id ) %]">Ver</A>
-               <A HREF="[% c.uri_for_action('/projeto/edit', row.projeto_id ) %]">Editar</A>
-               <A HREF="[% c.uri_for_action('/projeto/report', row.projeto_id ) %]">Relatório</A>
-               <A HREF="[% c.uri_for_action('/projeto/xmind', row.projeto_id ) %]">XMind</A>
+               <A HREF="[% c.uri_for_action('/projeto/ver', [ row.projeto_id ] ) %]">Ver</A>
+               <A HREF="[% c.uri_for_action('/projeto/editar', [ row.projeto_id ] ) %]">Editar</A>
+               <A HREF="[% c.uri_for_action('/projeto/report', [ row.projeto_id ] ) %]">Relatório</A>
+               <A HREF="[% c.uri_for_action('/projeto/xmind', [ row.projeto_id ] ) %]">XMind</A>
              </TD>
            </TR>
 

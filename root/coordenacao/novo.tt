@@ -1,0 +1,3 @@
+[% form.render %]
+<hr>
+<a href="[% c.uri_for_action( '/coordenaco/index' ) %]">Voltar para a Listagem</a>

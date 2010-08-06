@@ -1,11 +1,10 @@
-package Projeto::Controller::Projeto;
+package Projeto::Controller::Coordenacao;
+use base "Catalyst::Controller";
 use strict;
 use warnings;
-use base "Catalyst::Controller";
-use Projeto::Form::Projeto;
+use Projeto::Form::Coordenacao;
 
-
-sub base :Chained('/base') :PathPart('projeto') :CaptureArgs(0) {
+sub base :Chained('/base') :PathPart('coordenacao') :CaptureArgs(0) {
     my ($self, $c) = @_;
 }
 
@@ -13,7 +12,7 @@ sub index :Chained(base) :PathPart('') :Args(0) {}
 
 sub novo :Chained(base) :PathPart :Args(0) {
     my ($self, $c, $id) = @_;
-    $c->stash->{form} = Projeto::Form::Projeto->new(schema => $c->model('DB'));
+    $c->stash->{form} = Projeto::Form::Coordenacao->new;
     $c->stash->{form}->process( schema => $c->model('DB')->schema,
                                 params => $c->req->params );
 }
@@ -24,8 +23,8 @@ sub dados :Chained(base) :PathPart('') :CaptureArgs(1) {
     $id =~ /^\d+$/
       or $c->detach('/default');
 
-    $c->stash->{projeto} =
-      $c->model('DB::Projeto')->find({ projeto_id => $id })
+    $c->stash->{coordenacao} =
+      $c->model('DB::Coordenaco')->find({ coordenacao_id => $id })
         or $c->detach('/default');
 }
 
@@ -35,21 +34,15 @@ sub ver :Chained(dados) :PathPart('') :Args(0) {
 
 sub editar :Chained(dados) :Args(0) {
     my ($self, $c, $id) = @_;
-    $c->stash->{form} = Projeto::Form::Projeto->new(schema => $c->model('DB'));
-    $c->stash->{form}->process( item => $c->stash->{projeto},
+    $c->stash->{form} = Projeto::Form::Coordenacao->new;
+    $c->stash->{form}->process( item => $c->stash->{coordenacao},
                                 params => $c->req->params );
 }
 
 sub remover :Chained(dados) :Args(0) {
+    my ($self, $c, $id) = @_;
 }
 
-sub report :Chained(dados) :Args(0) {
-}
-
-sub xmind :Chained(dados) :Args(0) {
-    my ($self, $c) = @_;
-    $c->view('XMind::Projeto', $c->stash->{projeto})->process($c);
-}
 
 1;
 

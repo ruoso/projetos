@@ -1,12 +1,10 @@
-package Projeto::Model::DBICSchemamodel;
+package Projeto::Model::DB;
 
 use strict;
 use base 'Catalyst::Model::DBIC::Schema';
 
 __PACKAGE__->config(
     schema_class => 'Projeto::DBSchema',
-    
-    
 );
 
 =head1 NAME

@@ -1,0 +1,4 @@
+[% form.render %]
+<hr>
+<a href="[% c.uri_for_action( '/projeto/ver', [ projeto.projeto_id ] ) %]">Ver</a>
+<a href="[% c.uri_for_action( '/projeto/index' ) %]">Voltar para a listagem</a>
