@@ -1,8 +1,7 @@
 <TABLE>
  <THEAD>
   <TR>
-  [% FOREACH f IN form.fields.grep({ .type ne 'Submit' }) %]
-   [% 
+  [% FOREACH f IN form.fields %]
    <TH>[% f.name %]</TH>
   [% END %]
   </TR>
