@@ -15,4 +15,5 @@
    <LI><a href="[% base %]servico">Serviços</a></LI>
   </UL>
  </LI>
+ <LI><a href="[% c.uri_for_action('/xmind') %]">XMind Geral</A></LI>
 </UL>

@@ -23,9 +23,12 @@ sub dados :Chained(base) :PathPart('') :CaptureArgs(1) {
     $id =~ /^\d+$/
       or $c->detach('/default');
 
+    $c->stash->{item_id} = $id;
+
     $c->stash->{coordenacao} =
       $c->model('DB::Coordenaco')->find({ coordenacao_id => $id })
         or $c->detach('/default');
+
 }
 
 sub ver :Chained(dados) :PathPart('') :Args(0) {
@@ -41,6 +44,10 @@ sub editar :Chained(dados) :Args(0) {
 
 sub remover :Chained(dados) :Args(0) {
     my ($self, $c, $id) = @_;
+    if ($c->req->param('confirm')) {
+        $c->stash->{coordenacao}->delete;
+        $c->res->redirect($c->uri_for_action($self->action_for('index')));
+    }
 }
 
 sub xmind :Chained(dados) :Args(0) {

@@ -23,6 +23,8 @@ sub dados :Chained(base) :PathPart('') :CaptureArgs(1) {
     $id =~ /^\d+$/
       or $c->detach('/default');
 
+    $c->stash->{item_id} = $id;
+
     $c->stash->{projeto} =
       $c->model('DB::Projeto')->find({ projeto_id => $id })
         or $c->detach('/default');
@@ -40,6 +42,11 @@ sub editar :Chained(dados) :Args(0) {
 }
 
 sub remover :Chained(dados) :Args(0) {
+    my ($self, $c, $id) = @_;
+    if ($c->req->param('confirm')) {
+        $c->stash->{projeto}->delete;
+        $c->res->redirect($c->uri_for_action($self->action_for('index')));
+    }
 }
 
 sub report :Chained(dados) :Args(0) {
