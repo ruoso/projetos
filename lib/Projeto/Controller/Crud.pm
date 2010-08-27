@@ -12,6 +12,7 @@ my %resultset_map =
     'restricao' => 'Restrico',
     'tipo_objetivo' => 'TiposObjetivo',
     'tipo_restricao' => 'TiposRestricao',
+    'coordenacao' => 'Coordenaco',
   );
 
 sub base :Chained('/base') :CaptureArgs(1) :PathPart('') {

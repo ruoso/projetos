@@ -1,4 +1,4 @@
-package Projeto::Form::Coordenacao;
+package Projeto::Form::Coordenaco;
 use HTML::FormHandler::Moose;
 extends 'HTML::FormHandler::Model::DBIC';
 with 'HTML::FormHandler::Render::Simple';
