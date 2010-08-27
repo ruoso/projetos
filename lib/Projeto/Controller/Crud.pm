@@ -61,10 +61,6 @@ sub dados :Chained(base) :PathPart('') :CaptureArgs(1) {
         or $c->detach('/default');
 }
 
-sub ver :Chained(dados) :PathPart('') :Args(0) {
-    my ($self, $c, $id) = @_;
-}
-
 sub editar :Chained(dados) :Args(0) {
     my ($self, $c, $id) = @_;
     $c->stash->{form} = $c->stash->{form_class}->new(schema => $c->model('DB'));
