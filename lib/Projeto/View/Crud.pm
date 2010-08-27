@@ -10,7 +10,7 @@ my %columns =
 sub process {
     my $self = shift;
     my $c = shift;
-    $c->stash->{columns} = $columns{$c->stash->{entity_name}};
+#    $c->stash->{columns} = $columns{$c->stash->{entity_name}};
     $self->next::method($c, @_);
 }
 

@@ -1,4 +1,4 @@
-package Projeto::Form::LicaoAprendida;
+package Projeto::Form::LicoesAprendida;
 use HTML::FormHandler::Moose;
 extends 'HTML::FormHandler::Model::DBIC';
 with 'HTML::FormHandler::Render::Simple';

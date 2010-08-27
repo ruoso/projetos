@@ -2,9 +2,9 @@
  <LI>Informações de Domínio
   <UL>
    <LI><a href="[% base %]coordenacao">Coordenações<a></LI>
-   <LI><a href="[% base %]papei">Papéis</a></LI>
-   <LI><a href="[% base %]tiposobjetivo">Tipos de Objetivo</a></LI>
-   <LI><a href="[% base %]tiposrestricao">Tipos de Restricao</a></LI>
+   <LI><a href="[% base %]papel">Papéis</a></LI>
+   <LI><a href="[% base %]tipo_objetivo">Tipos de Objetivo</a></LI>
+   <LI><a href="[% base %]tipo_restricao">Tipos de Restricao</a></LI>
    <LI><a href="[% base %]cargo">Cargos</a></LI>
    <LI><a href="[% base %]pessoa">Pessoas</a></LI>
   </UL>

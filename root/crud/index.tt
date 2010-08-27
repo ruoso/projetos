@@ -2,7 +2,9 @@
  <THEAD>
   <TR>
   [% FOREACH f IN form.fields %]
-   <TH>[% f.name %]</TH>
+   [% IF f.type != 'Submit' %]
+    <TH>[% f.name %]</TH>
+   [% END %]
   [% END %]
   </TR>
  </THEAD>
@@ -11,9 +13,24 @@
   [% WHILE (item = rs.next) %]
   <TR>
   [% FOREACH f IN form.fields %]
-   <TD>[%  %]</TD>
+   [% SET name = f.name %]
+   <TD>
+   [% IF f.type == 'Select' %]
+    [% SET val = item.$name %]
+    [% IF val.can('nome'); val.nome; ELSIF val.can('descricao'); val.descricao; END %]
+   [% ELSIF f.type == 'Date' %]
+    [% SET date = item.$name %]
+    [% date.dmy() %]
+   [% ELSIF f.type != 'Submit' %]
+    [% item.$name %]
+   [% END %]
   [% END %]
+    <td>
+    <a href="[% c.uri_for_action( '/crud/editar',[ entity_name, item.id ], ) %]">Editar</a>
+    <a href="[% c.uri_for_action( '/crud/remover', [ entity_name, item.id ], ) %]">Remover</a>
   </TR>
   [% END %]
  </TBODY>
 </TABLE>
+<hr>
+<a href="[% c.uri_for_action(c.controller.action_for('novo'), [ entity_name ] ) %]">Novo</a>

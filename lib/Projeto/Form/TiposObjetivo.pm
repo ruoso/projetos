@@ -1,4 +1,4 @@
-package Projeto::Form::TipoObjetivo;
+package Projeto::Form::TiposObjetivo;
 use HTML::FormHandler::Moose;
 extends 'HTML::FormHandler::Model::DBIC';
 with 'HTML::FormHandler::Render::Simple';
