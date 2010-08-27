@@ -1,0 +1,4 @@
+
+<H1>Tem certeza que deseja remover?</H1>
+<a href="[% c.uri_for_action( c.controller.action_for('remover'), [ item_id ], { confirm => 1 }) %]">Sim, pode remover</a>
+<a href="[% c.uri_for_action( c.controller.action_for('index' ) ) %]">Não, voltar para a Listagem</a>

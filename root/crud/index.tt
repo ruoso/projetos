@@ -1,0 +1,20 @@
+<TABLE>
+ <THEAD>
+  <TR>
+  [% FOREACH f IN form.fields.grep({ .type ne 'Submit' }) %]
+   [% 
+   <TH>[% f.name %]</TH>
+  [% END %]
+  </TR>
+ </THEAD>
+ <TBODY>
+  [% SET rs = c.model('DB').resultset(rs_name).search_rs({}, {}) %]
+  [% WHILE (item = rs.next) %]
+  <TR>
+  [% FOREACH f IN form.fields %]
+   <TD>[%  %]</TD>
+  [% END %]
+  </TR>
+  [% END %]
+ </TBODY>
+</TABLE>
