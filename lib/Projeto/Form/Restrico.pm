@@ -1,4 +1,4 @@
-package Projeto::Form::Restricao;
+package Projeto::Form::Restrico;
 use HTML::FormHandler::Moose;
 extends 'HTML::FormHandler::Model::DBIC';
 with 'HTML::FormHandler::Render::Simple';

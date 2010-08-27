@@ -1,4 +1,4 @@
-package Projeto::Form::Medicao;
+package Projeto::Form::Medico;
 use HTML::FormHandler::Moose;
 extends 'HTML::FormHandler::Model::DBIC';
 with 'HTML::FormHandler::Render::Simple';
