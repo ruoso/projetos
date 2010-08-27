@@ -4,7 +4,7 @@ use warnings;
 use base "Projeto::Controller::Crud";
 
 sub base :Chained('/base') :CaptureArgs(0) :PathPart('restricao') {
-    my ($self, $c, $entidade) = @_;
+    my ($self, $c) = @_;
     $self->SUPER::base($c, 'restricao');
 }
 
